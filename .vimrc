@@ -68,6 +68,9 @@ Plug 'https://github.com/jalvesaq/R-Vim-runtime.git'
 " lets you view an outline of classes and functions in a file
 Plug 'https://github.com/majutsushi/tagbar'
 
+" simple colorscheme browser
+Plug 'https://github.com/vim-scripts/ScrollColors.git'
+
 call plug#end()
 
 " remap for ctrlp - press enter in normal mode to pull up the buffer list
