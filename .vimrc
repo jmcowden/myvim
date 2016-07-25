@@ -114,7 +114,7 @@ vnoremap <tab> %
 set scrolloff=5
 
 " make it easy to view snippets
-nnoremap <leader>snip :vsp /Users/voyager/.vim/bundle/snipmate.vim/snippets/qsl.snippets<cr>
+nnoremap <leader>snip :vsp ~/.vim/bundle/snipmate.vim/snippets/qsl.snippets<cr>
 
 " make it easy to :vsp
 nnoremap \\\ :vsp<cr>
