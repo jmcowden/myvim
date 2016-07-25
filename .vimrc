@@ -24,14 +24,19 @@ endif
 
 " Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn
 
-" first, how install vim-plug:
+" i've decided to use vim-plug to manage my plugins - 
+" here's how to install it:
 "curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 "    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-" use vim-plug to install shit
-" reload .vimrc and :PlugInstall to install plugins once you've added the
-" path here
+" now use vim-plug to install shit
 call plug#begin('~/.vim/plugged')
+
+" add your plugin like this:
+"   "comment describing what the plugin is for
+"   Plug 'https://github.com/path/to/repo.git'
+"
+" then reload your .vimrc and run :PlugInstall to install
 
 " fancy up the status bar
 Plug 'https://github.com/vim-airline/vim-airline.git'
