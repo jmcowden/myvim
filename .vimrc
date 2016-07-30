@@ -72,6 +72,8 @@ Plug 'https://github.com/majutsushi/tagbar'
 Plug 'https://github.com/vim-scripts/ScrollColors.git'
 "
 " display marks to the left of line numbers
+"  - you may need to make a 'docs' directory to kill an error message
+"    - mkir ~/.vim/plugged/Showmarks/doc
 Plug 'https://github.com/vim-scripts/ShowMarks.git'
 
 call plug#end()
