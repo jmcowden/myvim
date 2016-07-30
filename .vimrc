@@ -70,6 +70,9 @@ Plug 'https://github.com/majutsushi/tagbar'
 
 " simple colorscheme browser
 Plug 'https://github.com/vim-scripts/ScrollColors.git'
+"
+" display marks to the left of line numbers
+Plug 'https://github.com/vim-scripts/ShowMarks.git'
 
 call plug#end()
 
