@@ -37,7 +37,7 @@ Plug 'https://github.com/alfredodeza/khuno.vim.git'
 "Plug 'link to syntastic'
 
 " ARRRRRRRRRRRRRRRRR
-Plug 'https://github.com/vim-scripts/Vim-R-plugin.git'
+Plug 'https://github.com/jalvesaq/Nvim-R.git'
 
 " runtime files - the R plugin says mine are outdated
 Plug 'https://github.com/jalvesaq/R-Vim-runtime.git'
@@ -58,6 +58,9 @@ Plug 'https://github.com/vim-scripts/ShowMarks.git'
 
 " jump to any location on screen!
 Plug 'https://github.com/easymotion/vim-easymotion.git'
+
+" neat little tool to highlight bits of code as you scroll
+Plug 'https://github.com/junegunn/limelight.vim.git'
 
 call plug#end()
 
