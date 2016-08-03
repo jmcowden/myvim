@@ -328,11 +328,10 @@ function! Tab_Or_Complete()
     if col('.') > 1 && strpart(getline('.'), col('.')-2, 3) =~ '^\w'
         return "\<c-n>"
     else
-        return "\<tab>"
+        return "\<Tab>"
     endif
 endfunction
-inoremap <tab> <c-r> = Tab_Or_Complete()<cr>
-inoremap <tab> <c-r> = Tab_Or_Complete()<cr>
+inoremap <tab> <c-r>=Tab_Or_Complete()<cr>
 
 " function to increment selected numbers, mapped to control-i
 function! Incr()
