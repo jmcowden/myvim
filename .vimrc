@@ -76,6 +76,9 @@ Plug 'https://github.com/vim-scripts/ScrollColors.git'
 "    - mkir ~/.vim/plugged/Showmarks/doc
 Plug 'https://github.com/vim-scripts/ShowMarks.git'
 
+" jump to any location on screen!
+Plug 'https://github.com/easymotion/vim-easymotion.git'
+
 call plug#end()
 
 " remap for ctrlp - press enter in normal mode to pull up the buffer list
