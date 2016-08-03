@@ -1,35 +1,12 @@
-"cd /Users/jasoncowden/Aother
-
 set nocompatible
-
-" visual prefs
-if has("gui_running")
-    " hide toolbar
-    set guioptions-=T
-    set guifont=InconsolataLGC:h11
-    "colorscheme gotham
-    "colorscheme nightshimmer
-    colorscheme jellybeans
-    hi Normal guibg=grey20
-    " window transparency
-    set transparency=20
-endif
-
-if !has("gui_running")
-    colorscheme astronaut
-    " mouse support
-    set mouse=a
-endif
-
-
-" Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn
 
 " i've decided to use vim-plug to manage my plugins - 
 " here's how to install it:
 "curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 "    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-" now use vim-plug to install shit
+" now use vim-plug to install shit (plugins need to be loaded before you use
+" them, so this code needs to be run first)
 call plug#begin('~/.vim/plugged')
 
 " add your plugin like this:
@@ -70,7 +47,10 @@ Plug 'https://github.com/majutsushi/tagbar'
 
 " simple colorscheme browser
 Plug 'https://github.com/vim-scripts/ScrollColors.git'
-"
+
+" add some rad colorschemes
+Plug 'https://github.com/flazz/vim-colorschemes.git'
+
 " display marks to the left of line numbers
 "  - you may need to make a 'docs' directory to kill an error message
 "    - mkir ~/.vim/plugged/Showmarks/doc
@@ -80,6 +60,27 @@ Plug 'https://github.com/vim-scripts/ShowMarks.git'
 Plug 'https://github.com/easymotion/vim-easymotion.git'
 
 call plug#end()
+
+" visual prefs
+if has("gui_running")
+    " hide toolbar
+    set guioptions-=T
+    set guifont=InconsolataLGC:h13
+    "colorscheme gotham
+    "colorscheme nightshimmer
+    colorscheme jellybeans
+    hi Normal guibg=grey20
+    " window transparency
+    set transparency=20
+endif
+
+if !has("gui_running")
+    colorscheme astronaut
+    " mouse support
+    set mouse=a
+endif
+
+" Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn
 
 " remap for ctrlp - press enter in normal mode to pull up the buffer list
 nmap <CR> :CtrlPBuffer<CR>
