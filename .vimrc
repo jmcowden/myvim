@@ -1,6 +1,6 @@
 set nocompatible
 
-" i've decided to use vim-plug to manage my plugins - 
+" i've decided to use vim-plug to manage my plugins -
 " here's how to install it:
 "curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 "    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -53,7 +53,7 @@ Plug 'https://github.com/flazz/vim-colorschemes.git'
 
 " display marks to the left of line numbers
 "  - you may need to make a 'docs' directory to kill an error message
-"    - mkir ~/.vim/plugged/Showmarks/doc
+"    - mkdir ~/.vim/plugged/Showmarks/doc
 Plug 'https://github.com/vim-scripts/ShowMarks.git'
 
 " jump to any location on screen!
@@ -325,14 +325,14 @@ set cursorline
 "Use the Linux dictionary when spelling is in doubt.
 "Window users can copy the file to their machine.
 function! Tab_Or_Complete()
-    if col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '^\w'
+    if col('.') > 1 && strpart(getline('.'), col('.')-2, 3) =~ '^\w'
         return "\<c-n>"
     else
-        return "\<Tab>"
+        return "\<tab>"
     endif
 endfunction
 inoremap <tab> <c-r> = Tab_Or_Complete()<cr>
-inoremap <Tab> <c-r>=Tab_Or_Complete()<cr>
+inoremap <tab> <c-r> = Tab_Or_Complete()<cr>
 
 " function to increment selected numbers, mapped to control-i
 function! Incr()
