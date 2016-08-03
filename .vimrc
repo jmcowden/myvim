@@ -62,6 +62,9 @@ Plug 'https://github.com/easymotion/vim-easymotion.git'
 " neat little tool to highlight bits of code as you scroll
 Plug 'https://github.com/junegunn/limelight.vim.git'
 
+" higlight columns visually to show indent levels
+Plug 'https://github.com/nathanaelkane/vim-indent-guides'
+
 call plug#end()
 
 " visual prefs
