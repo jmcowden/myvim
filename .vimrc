@@ -68,6 +68,9 @@ Plug 'https://github.com/nathanaelkane/vim-indent-guides'
 " show contents of bufferes in a split tab
 Plug 'https://github.com/jlanzarotta/bufexplorer.git'
 
+" add some new text objects, and allow ci( (for example) from anywhere on line
+Plug 'https://github.com/wellle/targets.vim.git'
+
 call plug#end()
 
 " visual prefs
