@@ -77,7 +77,7 @@ call plug#end()
 if has("gui_running")
     " hide toolbar
     set guioptions-=T
-    set guifont=InconsolataLGC:h13
+    set guifont=InconsolataLGC:h12
     "colorscheme gotham
     "colorscheme nightshimmer
     colorscheme jellybeans
@@ -94,8 +94,11 @@ endif
 
 " Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn
 
+" make it easy to close the *other* split window
+nnoremap <leader>ww <c-w><c-w>:q<cr>
+
 " remap for ctrlp - press enter in normal mode to pull up the buffer list
-nmap <CR> :CtrlPBuffer<CR>
+nnoremap <CR> :CtrlPBuffer<CR>
 
 " turn on relative line numbers
 set relativenumber
@@ -200,7 +203,7 @@ set nojoinspaces
 set hidden
 
 " remap omnicomplete keys
-imap <c-l> <c-x><c-o>
+inoremap <c-l> <c-x><c-o>
 
 " make :vsp open windows on the right instead of the left
 set splitright
