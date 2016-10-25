@@ -18,8 +18,11 @@ call plug#begin('~/.vim/plugged')
 " fancy up the status bar
 Plug 'https://github.com/vim-airline/vim-airline.git'
 
-" snippets - might still need to customize the trigger key
-Plug 'honza/vim-snippets'
+" snippet plugin
+Plug 'https://github.com/SirVer/ultisnips.git'
+
+" snippet library
+Plug 'https://github.com/honza/vim-snippets.git'
 
 " surround plugin - make it easy to wrap with parens etc
 Plug 'https://github.com/tpope/vim-surround.git'
@@ -37,6 +40,8 @@ Plug 'https://github.com/alfredodeza/khuno.vim.git'
 "Plug 'link to syntastic'
 
 " ARRRRRRRRRRRRRRRRR
+" key bindings can be found here:
+" https://raw.githubusercontent.com/jalvesaq/Nvim-R/master/doc/Nvim-R.txt
 Plug 'https://github.com/jalvesaq/Nvim-R.git'
 
 " runtime files - the R plugin says mine are outdated
@@ -73,11 +78,14 @@ Plug 'https://github.com/wellle/targets.vim.git'
 
 call plug#end()
 
+" remap the snippet trigger key
+let g:UltiSnipsExpandTrigger="<c-u>"
+
 " visual prefs
 if has("gui_running")
     " hide toolbar
     set guioptions-=T
-    set guifont=InconsolataLGC:h12
+    set guifont=InconsolataLGC:h13
     "colorscheme gotham
     "colorscheme nightshimmer
     colorscheme jellybeans
@@ -98,7 +106,7 @@ endif
 nnoremap <leader>ww <c-w><c-w>:q<cr>
 
 " remap for ctrlp - press enter in normal mode to pull up the buffer list
-nnoremap <CR> :CtrlPBuffer<CR>
+"nnoremap <CR> :CtrlPBuffer<CR>
 
 " turn on relative line numbers
 set relativenumber
