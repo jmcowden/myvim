@@ -78,9 +78,6 @@ Plug 'https://github.com/wellle/targets.vim.git'
 
 call plug#end()
 
-" remap the snippet trigger key
-let g:UltiSnipsExpandTrigger="<c-u>"
-
 " visual prefs
 if has("gui_running")
     " hide toolbar
@@ -99,6 +96,11 @@ if !has("gui_running")
     " mouse support
     set mouse=a
 endif
+
+" remap the snippet trigger key
+let g:UltiSnipsExpandTrigger="<c-k>"
+let g:UltiSnipsJumpForwardTrigger="<c-n>"
+let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 
 " Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn
 
@@ -154,7 +156,7 @@ vnoremap <tab> %
 set scrolloff=5
 
 " make it easy to view snippets
-nnoremap <leader>snip :vsp ~/.vim/bundle/snipmate.vim/snippets/qsl.snippets<cr>
+nnoremap <leader>snip :vsp ~/.vim/plugged/vim-snippets/snippets/qsl.snippets<cr>
 
 " make it easy to :vsp
 nnoremap \\\ :vsp<cr>
