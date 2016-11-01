@@ -45,7 +45,10 @@ Plug 'https://github.com/alfredodeza/khuno.vim.git'
 Plug 'https://github.com/jalvesaq/Nvim-R.git'
 
 " runtime files - the R plugin says mine are outdated
-Plug 'https://github.com/jalvesaq/R-Vim-runtime.git'
+"Plug 'https://github.com/jalvesaq/R-Vim-runtime.git'
+
+" simulate a split shell inside of vim using tmux
+Plug 'https://github.com/ervandew/screen.git'
 
 " lets you view an outline of classes and functions in a file
 Plug 'https://github.com/majutsushi/tagbar'
@@ -97,12 +100,24 @@ if !has("gui_running")
     set mouse=a
 endif
 
+" Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn
+
 " remap the snippet trigger key
 let g:UltiSnipsExpandTrigger="<c-k>"
 let g:UltiSnipsJumpForwardTrigger="<c-n>"
 let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 
-" Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn
+" R plugin customization
+" open help docs in a vertical split instead of a new tab
+let R_nvimpager="vertical"
+" increase the width of the help doc split window
+let R_help_w = 100
+
+" use tmux
+let R_in_buffer=0
+let R_applescript=0
+let R_tmux_split=1
+let R_vsplit=1
 
 " make it easy to close the *other* split window
 nnoremap <leader>ww <c-w><c-w>:q<cr>
