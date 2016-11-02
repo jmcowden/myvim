@@ -1,18 +1,15 @@
 set nocompatible
 
-" i've decided to use vim-plug to manage my plugins -
-" here's how to install it:
+" how to install vim-plug:
 "curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 "    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-" now use vim-plug to install shit (plugins need to be loaded before you use
-" them, so this code needs to be run first)
+" plugins need to be loaded before you use them, so run this first
 call plug#begin('~/.vim/plugged')
 
-" add your plugin like this:
-"   "comment describing what the plugin is for
-"   Plug 'https://github.com/path/to/repo.git'
-"
+" add a plugin like this:
+    " comment describing what the plugin is for
+    "Plug 'https://github.com/path/to/repo.git'
 " then reload your .vimrc and run :PlugInstall to install
 
 " fancy up the status bar
@@ -35,9 +32,6 @@ Plug 'https://github.com/ctrlpvim/ctrlp.vim.git'
 
 " alfredodeza's python linter
 Plug 'https://github.com/alfredodeza/khuno.vim.git'
-
-" syntastic?
-"Plug 'link to syntastic'
 
 " ARRRRRRRRRRRRRRRRR
 " key bindings can be found here:
@@ -95,7 +89,7 @@ if has("gui_running")
 endif
 
 if !has("gui_running")
-    colorscheme astronaut
+    colorscheme grb256
     " mouse support
     set mouse=a
 endif
@@ -107,19 +101,25 @@ let g:UltiSnipsExpandTrigger="<c-k>"
 let g:UltiSnipsJumpForwardTrigger="<c-n>"
 let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 
-" R plugin customization
+"" begin R plugin customization
+
 " open help docs in a vertical split instead of a new tab
 let R_nvimpager="vertical"
+let R_rconsole_width = 80
+
 " increase the width of the help doc split window
 let R_help_w=100
+
 " remap the key to create <-
 let R_assign_map="`"
 
-" use tmux
+" tmux configurations to split panes vertically with R plugin
 let R_in_buffer=0
 let R_applescript=0
 let R_tmux_split=1
 let R_vsplit=1
+
+"" end R
 
 " make it easy to close the *other* split window
 nnoremap <leader>ww <c-w><c-w>:q<cr>
@@ -145,15 +145,6 @@ set virtualedit=block
 " set smart case for searching
 set ignorecase
 set smartcase
-
-" set up syntastic linter
-let g:syntastic_mode_map = { 'mode': 'active',
-    \ 'active_filetypes': [],
-    \ 'passive_filetypes': ['html'] }
-
-let g:syntastic_javascript_checkers = ['jshint']
-let g:syntastic_r_checkers = ['lint']
-" let g:syntastic_enable_r_svtools_checker = 1
 
 " fancy up some display characters
 set listchars=tab:▸\ ,extends:❯,precedes:❮,nbsp:␣,eol:→,trail:·
