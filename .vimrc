@@ -111,7 +111,9 @@ let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 " open help docs in a vertical split instead of a new tab
 let R_nvimpager="vertical"
 " increase the width of the help doc split window
-let R_help_w = 100
+let R_help_w=100
+" remap the key to create <-
+let R_assign_map="`"
 
 " use tmux
 let R_in_buffer=0
