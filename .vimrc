@@ -67,7 +67,7 @@ Plug 'https://github.com/junegunn/limelight.vim.git'
 " higlight columns visually to show indent levels
 Plug 'https://github.com/nathanaelkane/vim-indent-guides'
 
-" show contents of bufferes in a split tab
+" show contents of buffers in a split tab
 Plug 'https://github.com/jlanzarotta/bufexplorer.git'
 
 " add some new text objects, and allow ci( (for example) from anywhere on line
