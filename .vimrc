@@ -96,6 +96,10 @@ endif
 
 " Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn
 
+" enter visual block mode in terminal vim 
+" http://vi.stackexchange.com/questions/3699/is-there-a-command-to-enter-visual-block-mode
+command! Vb normal! <C-v>
+
 " remap the snippet trigger key
 let g:UltiSnipsExpandTrigger="<c-k>"
 let g:UltiSnipsJumpForwardTrigger="<c-n>"
@@ -234,7 +238,7 @@ set showcmd
 
 "improve status bar
 set laststatus=2
-set statusline=%F\ %m\ %y%=%l,%c\ %P
+"set statusline=%F\ %m\ %y%=%l,%c\ %P
 
 " turn on search highlighting
 set hlsearch
