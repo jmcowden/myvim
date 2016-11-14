@@ -14,6 +14,8 @@ call plug#begin('~/.vim/plugged')
 
 " fancy up the status bar
 Plug 'https://github.com/vim-airline/vim-airline.git'
+" add colorschemes for this tool
+Plug 'https://github.com/vim-airline/vim-airline-themes.git'
 
 " snippet plugin
 Plug 'https://github.com/SirVer/ultisnips.git'
@@ -73,6 +75,13 @@ Plug 'https://github.com/jlanzarotta/bufexplorer.git'
 " add some new text objects, and allow ci( (for example) from anywhere on line
 Plug 'https://github.com/wellle/targets.vim.git'
 
+" align things visually
+" :EasyAlign
+"Plug 'https://github.com/junegunn/vim-easy-align.git'
+
+" testing an alternate alignment tool
+Plug 'https://github.com/godlygeek/tabular.git'
+
 call plug#end()
 
 " visual prefs
@@ -96,9 +105,12 @@ endif
 
 " Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn
 
-" enter visual block mode in terminal vim 
+" colorscheme for Airline
+let g:airline_theme="papercolor"
+
+" enter visual block mode in terminal vim
 " http://vi.stackexchange.com/questions/3699/is-there-a-command-to-enter-visual-block-mode
-command! Vb normal! <C-v>
+command! Vb normal! <c-u>
 
 " remap the snippet trigger key
 let g:UltiSnipsExpandTrigger="<c-k>"
