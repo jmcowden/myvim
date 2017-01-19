@@ -15,13 +15,14 @@ syn region qslVars start="<" end=">" contains=qslKeyword,qslComment,qslString,qs
 
 syn keyword qslKeyword above autoadvance below chartext color colorpicker colorder colrank cols colsum contained
 syn keyword qslKeyword columns default_text displaymax dk dk_text dont_know dropdown dyngrid end contained
-syn keyword qslKeyword exit extracss extrajs fixed goto  hide_progress input_width contained
+syn keyword qslKeyword exit extracss extrajs fixed goto hide_progress input_width contained
 syn keyword qslKeyword language left max maxlength module multiple nav_back nav_next offset contained
 syn keyword qslKeyword order page placement popup contained
 syn keyword qslKeyword position prompt random ranges rank ranktitle required right roworder rowrank contained
 syn keyword qslKeyword rows rowsample rowsum rule sample scale show_value single_required slots  contained
-syn keyword qslKeyword splitlabels state status survey text thermometer timeout varlabel widget_all_required width wrap_length xor contained
-syn keyword qslLogic if or in not and elif else contained
+syn keyword qslKeyword splitlabels state status survey text thermometer timeout topic varlabel contained
+syn keyword qslKeyword widget_all_required width wrap_length xor contained
+syn keyword qslLogic for if or in not and elif else contained
 
 " variable attributes
 syn match qslAttr "\.\(code\|text\|value\|response_text\)" contained
@@ -39,7 +40,7 @@ syn match qslAttr "\.\(code\|text\|value\|response_text\)" contained
 syn match qslFunc "\<gryphon\>\.\(num_skipped_except\|headers\|contained\)\+" contained
 
 " panman object methods
-syn match qslFunc "\<panman\>\.\(grant\|took_survey\|assign_treatment\)\+" contained
+syn match qslFunc "\<panman\>\.\(referral_parameters\|grant\|took_survey\|assign_treatment\)\+" contained
 
 " array methods 
 syn keyword qslFunc count append find has_any pop split strip contained 
@@ -47,7 +48,7 @@ syn keyword qslFunc count append find has_any pop split strip contained
 " functions
 syn keyword qslFunc random assign_treatment best_match bottom_n counter_increment counter_value date decimal fuzzy_matcher contained
 syn keyword qslFunc get_page_timing int islice len load_csv pow random random_shuffle random_shuffles contained
-syn keyword qslFunc random_sample random_samples rankings set slice sqrt str top_n unique contained
+syn keyword qslFunc random_sample random_samples rankings set slice sqrt str temp top_n unique contained
 
 " multi-word keywords
 syn match qslKeyword "\<single\>\( \|-colorpicker\)*" contained
