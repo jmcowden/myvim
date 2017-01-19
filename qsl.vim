@@ -33,9 +33,6 @@ syn match qslAttr "\<gryphon\>\.\(visa\|os\|browser\|cookie_id\|cookied\|perc_sk
 " panman object keywords
 syn match qslAttr "\<panman\>\.\(qualified\|username\|pixel\|pmxid\|email\|is_panelist\|source\)\+" contained
 
-" variable methods
-syn match qslAttr "\.\(code\|text\|value\|response_text\)" contained
-
 " gryphon object methods
 syn match qslFunc "\<gryphon\>\.\(num_skipped_except\|headers\|contained\)\+" contained
 
