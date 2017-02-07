@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language: QSL
 " Maintainer: Jason Cowden
-" Latest Revision: 8/31/2012
+" Latest Revision: January 2017
 
 if exists("b:current_syntax")
     finish
