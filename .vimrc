@@ -12,6 +12,9 @@ call plug#begin('~/.vim/plugged')
     "Plug 'https://github.com/path/to/repo.git'
 " then reload your .vimrc and run :PlugInstall to install
 
+" ipython/vim plugin
+Plug 'https://github.com/ivanov/vim-ipython.git'
+
 " fancy up the status bar
 Plug 'https://github.com/vim-airline/vim-airline.git'
 " add colorschemes for this tool
@@ -75,6 +78,10 @@ Plug 'https://github.com/jlanzarotta/bufexplorer.git'
 " add some new text objects, and allow ci( (for example) from anywhere on line
 Plug 'https://github.com/wellle/targets.vim.git'
 
+" tmux/vim integration tool
+Plug 'https://github.com/jgdavey/tslime.vim.git'
+
+
 " align things visually
 " :EasyAlign
 "Plug 'https://github.com/junegunn/vim-easy-align.git'
@@ -88,7 +95,7 @@ call plug#end()
 if has("gui_running")
     " hide toolbar
     set guioptions-=T
-    set guifont=InconsolataLGC:h13
+    set guifont=InconsolataLGC:h12
     "colorscheme gotham
     "colorscheme nightshimmer
     colorscheme jellybeans
@@ -105,12 +112,25 @@ endif
 
 " Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn
 
+" easy access to Gundo toggle
+nnoremap <leader>ggg :GundoToggle<cr>
+
 " colorscheme for Airline
 let g:airline_theme="papercolor"
 
+" turn off the default showmode behavior, since i'm using airline
+set noshowmode
+
+" prevent the terminal from capturing c-q (otherwise vim never sees it)
+silent !stty -ixon > /dev/null 2>/dev/null
+
 " enter visual block mode in terminal vim
 " http://vi.stackexchange.com/questions/3699/is-there-a-command-to-enter-visual-block-mode
-command! Vb normal! <c-u>
+"command! Vb normal! <C-v>
+"nnoremap <c-q> :Vb<cr>
+
+" take the newline character out of line highlight
+nnoremap <c-v> 0v$h
 
 " remap the snippet trigger key
 let g:UltiSnipsExpandTrigger="<c-k>"
@@ -222,9 +242,6 @@ nnoremap I 0i
 " experiment with mappings to move lines up/down
 nnoremap - ddp
 nnoremap _ ddkkp
-
-" take the newline character out of line highlight
-nnoremap <c-v> 0v$h
 
 " swap the ' and ` keys for jumping to marks
 nnoremap ' `
