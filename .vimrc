@@ -58,6 +58,8 @@ Plug 'https://github.com/vim-scripts/ScrollColors.git'
 " add some rad colorschemes
 Plug 'https://github.com/flazz/vim-colorschemes.git'
 
+Plug 'https://github.com/fcpg/vim-orbital'
+
 " display marks to the left of line numbers
 "  - you may need to make a 'docs' directory to kill an error message
 "    - mkdir ~/.vim/plugged/Showmarks/doc
@@ -122,6 +124,7 @@ let g:airline_theme="papercolor"
 set noshowmode
 
 " prevent the terminal from capturing c-q (otherwise vim never sees it)
+" http://stackoverflow.com/questions/7883803/why-doesnt-map-c-q-q-cr-work-in-vim
 silent !stty -ixon > /dev/null 2>/dev/null
 
 " enter visual block mode in terminal vim
@@ -205,7 +208,11 @@ nnoremap <leader>snip :vsp ~/.vim/plugged/vim-snippets/snippets/qsl.snippets<cr>
 nnoremap \\\ :vsp<cr>
 
 " make it easy to :vsp a new scratch qsl document
-nnoremap \]\ :vsp n.qsl<cr>
+" nnoremap \]\ :vsp n.qsl<cr>
+
+" move through buffers
+nnoremap \[ :bprevious<cr>
+nnoremap \] :bnext<cr>
 
 " show options in status bar when tab-completing ex commands
 set wildmenu
@@ -234,7 +241,7 @@ highlight Comment gui=italic
 
 " Hotkey for :TagbarToggle
 nnoremap <leader>tt :TagbarToggle<cr>
-"
+
 " make I go to the beginning of the line, ignoring whitespace
 nnoremap I 0i
 
@@ -245,7 +252,7 @@ nnoremap _ ddkkp
 " swap the ' and ` keys for jumping to marks
 nnoremap ' `
 nnoremap ` '
-"
+
 " turn off joinspaces so that J only uses one space after join
 set nojoinspaces
 
@@ -333,9 +340,6 @@ inoremap ()     ()
 
 " turn on the matchit plugin to use % to jump between html and other tags
 runtime macros/matchit.vim
-
-" remap the <- key in the r-plugin
-let vimrplugin_assign_map = "`"
 
 " hide the special marks for showmark plugin
 let showmarks_include = "abcdefghilmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
