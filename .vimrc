@@ -97,7 +97,7 @@ call plug#end()
 if has("gui_running")
     " hide toolbar
     set guioptions-=T
-    set guifont=InconsolataLGC:h12
+    set guifont=InconsolataLGC:h13
     "colorscheme gotham
     "colorscheme nightshimmer
     colorscheme jellybeans
@@ -127,11 +127,6 @@ set noshowmode
 " http://stackoverflow.com/questions/7883803/why-doesnt-map-c-q-q-cr-work-in-vim
 silent !stty -ixon > /dev/null 2>/dev/null
 
-" enter visual block mode in terminal vim
-" http://vi.stackexchange.com/questions/3699/is-there-a-command-to-enter-visual-block-mode
-"command! Vb normal! <C-v>
-"nnoremap <c-q> :Vb<cr>
-
 " take the newline character out of line highlight
 nnoremap <c-v> 0v$h
 
@@ -141,6 +136,10 @@ let g:UltiSnipsJumpForwardTrigger="<c-n>"
 let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 
 "" begin R plugin customization
+
+
+" open file listing all <leader>xx shortcuts for the plugin
+nnoremap <leader>rcom :vsp ~/myvim/r_plug_commands.txt<cr>
 
 " open help docs in a vertical split instead of a new tab
 let R_nvimpager="vertical"
