@@ -43,9 +43,6 @@ Plug 'https://github.com/alfredodeza/khuno.vim.git'
 " https://raw.githubusercontent.com/jalvesaq/Nvim-R/master/doc/Nvim-R.txt
 Plug 'https://github.com/jalvesaq/Nvim-R.git'
 
-" runtime files - the R plugin says mine are outdated
-"Plug 'https://github.com/jalvesaq/R-Vim-runtime.git'
-
 " simulate a split shell inside of vim using tmux
 Plug 'https://github.com/ervandew/screen.git'
 
