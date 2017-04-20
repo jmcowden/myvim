@@ -2,9 +2,8 @@ snippet survey
 	{survey ${1:surveyname}}
 	
 	{
-	# capture panman source
 	source = panman.source
-	testsource = [0]
+	type = gryphon.type
 	}
 
 snippet var
@@ -12,7 +11,7 @@ snippet var
 	 <1> ${4:option1}
 
 snippet treat
-	[${1:treat} if panman.source in testsource] {single varlabel="$2"} ${2:treatname}
+	[${1:treat} if type == "test"] {single varlabel="$2"} ${2:treatname}
 	 <1> ${4:level1}
 	
 	{
@@ -21,14 +20,12 @@ snippet treat
 	}
 
 snippet treatmany
-	[${1:treat} if panman.source in testsource] {single varlabel="$2"} ${2:treatname}
+	[${1:treat} if type == "test"] {single varlabel="$2"} ${2:treatname}
 	 <1> ${5:level1}
 	
 	{
-	x = 1
-	
 	if not $1:
-	    $1.set(panman.assign_treatment([${3:distribution}], x, "${4:trtname}"))
+	    $1.set(panman.assign_treatment([${3:distribution}], 1, "${4:trtname}"))
 	}
 
 snippet grid
