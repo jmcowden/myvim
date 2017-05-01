@@ -331,9 +331,6 @@ inoremap (<cr>  (<cr>)<esc>O
 inoremap ((     (
 inoremap ()     ()
 
-" choose terminal program for screen plugin
-"let vimrplugin_term = "iTerm"
-
 " turn on the matchit plugin to use % to jump between html and other tags
 runtime macros/matchit.vim
 
