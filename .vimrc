@@ -13,7 +13,7 @@ call plug#begin('~/.vim/plugged')
 " then reload your .vimrc and run :PlugInstall to install
 
 " ipython/vim plugin
-Plug 'https://github.com/ivanov/vim-ipython.git'
+"Plug 'https://github.com/ivanov/vim-ipython.git'
 
 " fancy up the status bar
 Plug 'https://github.com/vim-airline/vim-airline.git'
@@ -78,7 +78,8 @@ Plug 'https://github.com/jlanzarotta/bufexplorer.git'
 Plug 'https://github.com/wellle/targets.vim.git'
 
 " tmux/vim integration tool
-Plug 'https://github.com/jgdavey/tslime.vim.git'
+"Plug 'https://github.com/jgdavey/tslime.vim.git'
+Plug 'https://github.com/jpalardy/vim-slime.git'
 
 " align things visually
 " :EasyAlign
@@ -110,10 +111,16 @@ endif
 
 " Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn
 
-" keybindings for tslime plugin
-vmap <C-c><C-c> <Plug>SendSelectionToTmux
-nmap <C-c><C-c> <Plug>NormalModeSendToTmux
-nmap <C-c>r <Plug>SetTmuxVars
+" vim-slime configuration
+" use tmux instead of screen
+let g:slime_target="tmux"
+" some defaults to set target pane
+let g:slime_default_config = {"socket_name": "default", "target_pane": "0.1"}
+" let send commands to ipython using %cpaste
+let g:slime_python_ipython=1
+
+" close the preview window containing help-text after autocomplete
+autocmd CompleteDone * pclose
 
 " easy access to Gundo toggle
 nnoremap <leader>ggg :GundoToggle<cr>
