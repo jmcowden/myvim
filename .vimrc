@@ -80,7 +80,6 @@ Plug 'https://github.com/wellle/targets.vim.git'
 " tmux/vim integration tool
 Plug 'https://github.com/jgdavey/tslime.vim.git'
 
-
 " align things visually
 " :EasyAlign
 "Plug 'https://github.com/junegunn/vim-easy-align.git'
@@ -94,7 +93,7 @@ call plug#end()
 if has("gui_running")
     " hide toolbar
     set guioptions-=T
-    set guifont=InconsolataLGC:h13
+    set guifont=InconsolataLGC:h12
     "colorscheme gotham
     "colorscheme nightshimmer
     colorscheme jellybeans
@@ -110,6 +109,11 @@ if !has("gui_running")
 endif
 
 " Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn
+
+" keybindings for tslime plugin
+vmap <C-c><C-c> <Plug>SendSelectionToTmux
+nmap <C-c><C-c> <Plug>NormalModeSendToTmux
+nmap <C-c>r <Plug>SetTmuxVars
 
 " easy access to Gundo toggle
 nnoremap <leader>ggg :GundoToggle<cr>
