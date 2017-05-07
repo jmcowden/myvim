@@ -78,12 +78,7 @@ Plug 'https://github.com/jlanzarotta/bufexplorer.git'
 Plug 'https://github.com/wellle/targets.vim.git'
 
 " tmux/vim integration tool
-"Plug 'https://github.com/jgdavey/tslime.vim.git'
 Plug 'https://github.com/jpalardy/vim-slime.git'
-
-" align things visually
-" :EasyAlign
-"Plug 'https://github.com/junegunn/vim-easy-align.git'
 
 " testing an alternate alignment tool
 Plug 'https://github.com/godlygeek/tabular.git'
@@ -114,9 +109,10 @@ endif
 " vim-slime configuration
 " use tmux instead of screen
 let g:slime_target="tmux"
-" some defaults to set target pane
+" some defaults to set the target tmux pane
+let g:slime_dont_ask_default = 1
 let g:slime_default_config = {"socket_name": "default", "target_pane": "0.1"}
-" let send commands to ipython using %cpaste
+" send commands to ipython using %cpaste
 let g:slime_python_ipython=1
 
 " close the preview window containing help-text after autocomplete
