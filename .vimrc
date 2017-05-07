@@ -139,8 +139,8 @@ let g:UltiSnipsExpandTrigger="<c-k>"
 let g:UltiSnipsJumpForwardTrigger="<c-n>"
 let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 
-"" begin R plugin customization
 
+"" begin R plugin customization
 
 " open file listing all <leader>xx shortcuts for the plugin
 nnoremap <leader>rcom :vsp ~/myvim/r_plug_commands.txt<cr>
@@ -161,6 +161,7 @@ let R_applescript=0
 let R_tmux_split=1
 
 "" end R
+
 
 " make it easy to close the *other* split window
 nnoremap <leader>ww <c-w><c-w>:q<cr>
