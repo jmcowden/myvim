@@ -13,7 +13,7 @@ call plug#begin('~/.vim/plugged')
 " then reload your .vimrc and run :PlugInstall to install
 
 " ipython/vim plugin
-Plug 'https://github.com/ivanov/vim-ipython.git'
+"Plug 'https://github.com/ivanov/vim-ipython.git'
 
 " fancy up the status bar
 Plug 'https://github.com/vim-airline/vim-airline.git'
@@ -78,12 +78,7 @@ Plug 'https://github.com/jlanzarotta/bufexplorer.git'
 Plug 'https://github.com/wellle/targets.vim.git'
 
 " tmux/vim integration tool
-Plug 'https://github.com/jgdavey/tslime.vim.git'
-
-
-" align things visually
-" :EasyAlign
-"Plug 'https://github.com/junegunn/vim-easy-align.git'
+Plug 'https://github.com/jpalardy/vim-slime.git'
 
 " testing an alternate alignment tool
 Plug 'https://github.com/godlygeek/tabular.git'
@@ -94,7 +89,7 @@ call plug#end()
 if has("gui_running")
     " hide toolbar
     set guioptions-=T
-    set guifont=InconsolataLGC:h13
+    set guifont=InconsolataLGC:h12
     "colorscheme gotham
     "colorscheme nightshimmer
     colorscheme jellybeans
@@ -110,6 +105,18 @@ if !has("gui_running")
 endif
 
 " Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn
+
+" vim-slime configuration
+" use tmux instead of screen
+let g:slime_target="tmux"
+" some defaults to set the target tmux pane
+let g:slime_dont_ask_default = 1
+let g:slime_default_config = {"socket_name": "default", "target_pane": "0.1"}
+" send commands to ipython using %cpaste
+let g:slime_python_ipython=1
+
+" close the preview window containing help-text after autocomplete
+autocmd CompleteDone * pclose
 
 " easy access to Gundo toggle
 nnoremap <leader>ggg :GundoToggle<cr>
@@ -132,8 +139,8 @@ let g:UltiSnipsExpandTrigger="<c-k>"
 let g:UltiSnipsJumpForwardTrigger="<c-n>"
 let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 
-"" begin R plugin customization
 
+"" begin R plugin customization
 
 " open file listing all <leader>xx shortcuts for the plugin
 nnoremap <leader>rcom :vsp ~/myvim/r_plug_commands.txt<cr>
@@ -154,6 +161,7 @@ let R_applescript=0
 let R_tmux_split=1
 
 "" end R
+
 
 " make it easy to close the *other* split window
 nnoremap <leader>ww <c-w><c-w>:q<cr>
@@ -330,9 +338,6 @@ inoremap (      ()<left>
 inoremap (<cr>  (<cr>)<esc>O
 inoremap ((     (
 inoremap ()     ()
-
-" choose terminal program for screen plugin
-"let vimrplugin_term = "iTerm"
 
 " turn on the matchit plugin to use % to jump between html and other tags
 runtime macros/matchit.vim
