@@ -207,8 +207,8 @@ nnoremap \\\ :vsp<cr>
 " nnoremap \]\ :vsp n.qsl<cr>
 
 " move through buffers
-nnoremap \[ :bprevious<cr>
-nnoremap \] :bnext<cr>
+nnoremap <leader>[ :bprevious<cr>
+nnoremap <leader>] :bnext<cr>
 
 " show options in status bar when tab-completing ex commands
 set wildmenu
