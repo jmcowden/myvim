@@ -20,6 +20,9 @@ Plug 'https://github.com/vim-airline/vim-airline.git'
 " add colorschemes for this tool
 Plug 'https://github.com/vim-airline/vim-airline-themes.git'
 
+" fancy up the tmux status bar to match vim
+Plug 'https://github.com/edkolev/tmuxline.vim.git'
+
 " snippet plugin
 Plug 'https://github.com/SirVer/ultisnips.git'
 
@@ -89,13 +92,13 @@ call plug#end()
 if has("gui_running")
     " hide toolbar
     set guioptions-=T
-    set guifont=InconsolataLGC:h12
+    set guifont=InconsolataLGC:h13
     "colorscheme gotham
     "colorscheme nightshimmer
     colorscheme jellybeans
     hi Normal guibg=grey20
     " window transparency
-    set transparency=20
+    set transparency=15
 endif
 
 if !has("gui_running")
@@ -105,6 +108,12 @@ if !has("gui_running")
 endif
 
 " Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn
+
+" tmuxline configuration
+" disable the default menu separators, which requires powerline
+let g:tmuxline_powerline_separators = 0
+" prevent vim-airline from setting the tmux config - I want to do it myself
+let g:airline#extensions#tmuxline#enabled = 0
 
 " vim-slime configuration
 " use tmux instead of screen
@@ -147,10 +156,10 @@ nnoremap <leader>rcom :vsp ~/myvim/r_plug_commands.txt<cr>
 
 " open help docs in a vertical split instead of a new tab
 let R_nvimpager="vertical"
-let R_rconsole_width = 80
+let R_rconsole_width = 100
 
 " increase the width of the help doc split window
-let R_help_w=100
+let R_help_w=125
 
 " remap the key to create <-
 let R_assign_map="`"
