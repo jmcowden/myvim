@@ -1,10 +1,37 @@
 snippet survey
 	{survey ${1:surveyname}}
-	
+
 	{
 	source = panman.source
 	type = gryphon.interview_type
 	}
+
+snippet surveyfull
+	{survey ${1:surveyname}}
+
+	{
+	# capture which panman link people used to enter the survey
+	source = panman.source
+
+	# is the interview "live" or "test"?
+	type = gryphon.interview_type
+
+	# capture geo header to screen non-US
+	geo_country_code = "NA"
+	non_US_screen = 0
+
+	if gryphon.headers('X-Zxtm-Geo-Country-Code'):
+		geo_country_code = gryphon.headers('X-Zxtm-Geo-Country-Code')
+
+	if geo_country_code != "US":
+		non_US_screen = 1
+
+	}
+
+	{page screen_non_US_page if panman.is_panelist and type != "test" and non_US_screen in [1]}
+
+	{exit status=screenout}
+	{end page screen_non_US_page}
 
 snippet var
 	[${1:var}] {${2:type}} ${3:qtext}
@@ -13,7 +40,7 @@ snippet var
 snippet treat
 	[${1:treat} if type == "test"] {single varlabel="$2"} ${2:treatname}
 	 <1> ${4:level1}
-	
+
 	{
 	if not $1:
 	    $1.set(panman.assign_treatment([${3:distribution}]))
@@ -22,7 +49,7 @@ snippet treat
 snippet treatmany
 	[${1:treat} if type == "test"] {single varlabel="$2"} ${2:treatname}
 	 <1> ${5:level1}
-	
+
 	{
 	if not $1:
 	    $1.set(panman.assign_treatment([${3:distribution}], 1, "${4:trtname}"))
@@ -43,19 +70,19 @@ snippet consent
 	[${1:consent}] {single required=1} ${2:text}
 	 <1> Yes
 	 <2> No
-	
+
 	{
 	$1_flag = 0
-	
+
 	if $1 not in [1]:
 	    $1_flag = 1
 	}
-	
+
 	{end page $1_page}
-	
+
 	{page thanksout nav_back=0 if $1_flag in [1]}
 	We're sorry, but you do not qualify for this survey. Please press the forward arrow to be taken to a different survey.
-	
+
 	{exit status=screenout}
 	{end page thanksout}
 
@@ -64,29 +91,29 @@ snippet nb
 
 snippet vidtest
 	{page mintro nav_back=0}
-	During this survey you may be asked to watch a brief video.  Please verify that you are able to view this video by playing the TEST MOVIE below and answering the questions.  
-	
+	During this survey you may be asked to watch a brief video.  Please verify that you are able to view this video by playing the TEST MOVIE below and answering the questions.
+
 	If you are unable to view the video, please make sure that you have the most recent version of Adobe Flash Player installed on this computer.
-	
+
 	[video_leader] {video "resource:leader.m4v"}
-	
+
 	[vidtest1] {single order=randomize required=1} What did you see in the video clip?
 	 <1> Countdown
 	 <2> Space shuttle launch
 	 <3> Soccer game
 	 <4 fixed> Unable to view video
-	
+
 	[vidtest2] {single order=randomize  required=1} What sound did you hear while watching the video?
 	 <1> Beep
 	 <2> Bark
 	 <3> Drum
 	 <4 fixed> Unable to hear sound
-	
+
 	{end page mintro}
-	
+
 	{page mintro2 if vidtest1!=1 or vidtest2!=1}
-	[screen_problem if vidtest1!=1 or vidtest2!=1] {open rows=6 cols=70}  For quality control purposes, please describe what problem you encountered when trying to watch the test video.  If you do not think you saw any noticeable error but are seeing this screen anyway, please describe what happened when you watched the video.  
-	
+	[screen_problem if vidtest1!=1 or vidtest2!=1] {open rows=6 cols=70}  For quality control purposes, please describe what problem you encountered when trying to watch the test video.  If you do not think you saw any noticeable error but are seeing this screen anyway, please describe what happened when you watched the video.
+
 	{exit status=screenout if vidtest1!=1 or vidtest2!=1}
 	{end page mintro2}
 
@@ -97,16 +124,16 @@ snippet therm
 snippet csv
 	# load the table
 	temp mytable = load_csv("")
-	
+
 	# make a dict that uses strings as keys and values
 	temp query = DictStrStr()
-	
+
 	# create a query on lookupvalue from column 'colname' in the csv
 	query['colname'] = str(lookupvalue)
-	
+
 	# query the table
 	temp resultrow = mytable.find_first(query)
-	
+
 	# if the table returns a row, lookup values by column in that row
 	if resultrow['colname2']:
 		var1 = resultrow['colname2']
@@ -114,7 +141,7 @@ snippet csv
 snippet insert
 	{
 	${1:varname}_insert = ""
-	
+
 	if $1 in []:
 		$1_insert = $1.response_text
 	elif $1 in []:
@@ -127,14 +154,14 @@ snippet insert
 snippet script
 	<<script>
 	$(page_state).on('after_content_loaded', function () {
-	
+
 	});
-	
+
 	</script>>
 
 snippet style
 	<<style>
-	
+
 	</style>>
 
 snippet video
@@ -142,7 +169,7 @@ snippet video
 
 snippet html
 	#html
-	
+
 	#/html
 
 snippet ol
