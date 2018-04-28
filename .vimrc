@@ -92,10 +92,11 @@ call plug#end()
 if has("gui_running")
     " hide toolbar
     set guioptions-=T
-    set guifont=InconsolataLGC:h13
+    set guifont=InconsolataLGC:h12
     "colorscheme gotham
     "colorscheme nightshimmer
     colorscheme jellybeans
+    "colorscheme oceandeep
     hi Normal guibg=grey20
     " window transparency
     set transparency=15
@@ -103,8 +104,11 @@ endif
 
 if !has("gui_running")
     colorscheme grb256
+    "colorscheme jellybeans
+
     " mouse support
     set mouse=a
+
 endif
 
 " Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn
@@ -156,7 +160,7 @@ nnoremap <leader>rcom :vsp ~/myvim/r_plug_commands.txt<cr>
 
 " open help docs in a vertical split instead of a new tab
 let R_nvimpager="vertical"
-let R_rconsole_width = 100
+let R_rconsole_width = 80
 
 " increase the width of the help doc split window
 let R_help_w=125
@@ -167,7 +171,8 @@ let R_assign_map="`"
 " tmux configurations to split panes vertically with R plugin
 let R_in_buffer=0
 let R_applescript=0
-let R_tmux_split=1
+"let R_tmux_split=1
+let R_source = "/Users/voyager/.vim/plugged/Nvim-R/R/tmux_split.vim"
 
 "" end R
 
