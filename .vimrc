@@ -15,6 +15,9 @@ call plug#begin('~/.vim/plugged')
 " ipython/vim plugin
 "Plug 'https://github.com/ivanov/vim-ipython.git'
 
+" fzf fuzzy finder
+Plug 'https://github.com/junegunn/fzf.git'
+
 " fancy up the status bar
 Plug 'https://github.com/vim-airline/vim-airline.git'
 " add colorschemes for this tool
@@ -57,8 +60,9 @@ Plug 'https://github.com/vim-scripts/ScrollColors.git'
 
 " add some rad colorschemes
 Plug 'https://github.com/flazz/vim-colorschemes.git'
-
+Plug 'https://github.com/rafi/awesome-vim-colorschemes.git'
 Plug 'https://github.com/fcpg/vim-orbital'
+Plug 'https://github.com/yuttie/hydrangea-vim'
 
 " display marks to the left of line numbers
 "  - you may need to make a 'docs' directory to kill an error message
@@ -92,23 +96,21 @@ call plug#end()
 if has("gui_running")
     " hide toolbar
     set guioptions-=T
-    set guifont=InconsolataLGC:h12
-    "colorscheme gotham
+    set guifont=InconsolataLGC:h13
+    colorscheme hydrangea
+    "colorscheme materialbox
     "colorscheme nightshimmer
-    colorscheme jellybeans
-    "colorscheme oceandeep
+    "colorscheme jellybeans
+    "colorscheme sift
     hi Normal guibg=grey20
     " window transparency
-    set transparency=15
+    set transparency=5
 endif
 
 if !has("gui_running")
     colorscheme grb256
-    "colorscheme jellybeans
-
     " mouse support
     set mouse=a
-
 endif
 
 " Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn
@@ -176,6 +178,8 @@ let R_source = "/Users/voyager/.vim/plugged/Nvim-R/R/tmux_split.vim"
 
 "" end R
 
+" toggle the quick-fix window in Khuno linter
+nmap <silent><leader>k <esc>:Khuno show<cr>
 
 " make it easy to close the *other* split window
 nnoremap <leader>ww <c-w><c-w>:q<cr>
@@ -252,6 +256,9 @@ filetype on
 filetype plugin on
 filetype indent on
 set ofu=syntaxcomplete#Complete
+
+" turn off the 'boxy' hydrangea string highlighting
+hi link String Include
 
 " make comments italic
 "highlight Comment cterm=italic
@@ -365,6 +372,12 @@ function! GoogleSearch()
         silent! exec "silent! !open \"http://google.com/search?q=" . searchterm . "\""
     endfunction
 vnoremap <F5> "zy<esc>:call GoogleSearch()<CR>
+
+function! DemoSearch()
+    let searchterm = getreg("z")
+        silent! exec "silent! !open \"https://datum.yougov.net/namespaces/panel:1/definitions/" . searchterm . "\""
+    endfunction
+vnoremap <F5> "zy<esc>:call DemoSearch()<CR>
 
 " shortcut to set qsl filetype
 " embeds css highlighting inside of qsl highlighting
