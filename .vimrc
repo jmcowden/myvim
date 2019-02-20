@@ -59,10 +59,11 @@ Plug 'https://github.com/majutsushi/tagbar'
 Plug 'https://github.com/vim-scripts/ScrollColors.git'
 
 " add some rad colorschemes
-Plug 'https://github.com/flazz/vim-colorschemes.git'
+"Plug 'https://github.com/flazz/vim-colorschemes.git'
 Plug 'https://github.com/rafi/awesome-vim-colorschemes.git'
 Plug 'https://github.com/fcpg/vim-orbital'
 Plug 'https://github.com/yuttie/hydrangea-vim'
+Plug 'https://github.com/quanganhdo/grb256'
 
 " display marks to the left of line numbers
 "  - you may need to make a 'docs' directory to kill an error message
@@ -90,6 +91,12 @@ Plug 'https://github.com/jpalardy/vim-slime.git'
 " testing an alternate alignment tool
 Plug 'https://github.com/godlygeek/tabular.git'
 
+" preview css color codes
+Plug 'https://github.com/ap/vim-css-color.git'
+
+" nicer indentation for python
+Plug 'https://github.com/Vimjas/vim-python-pep8-indent.git'
+
 call plug#end()
 
 " visual prefs
@@ -97,7 +104,8 @@ if has("gui_running")
     " hide toolbar
     set guioptions-=T
     set guifont=InconsolataLGC:h13
-    colorscheme hydrangea
+    colorscheme yellow-moon
+    "colorscheme hydrangea
     "colorscheme materialbox
     "colorscheme nightshimmer
     "colorscheme jellybeans
@@ -109,11 +117,8 @@ endif
 
 if !has("gui_running")
     colorscheme grb256
-    "colorscheme jellybeans
-
     " mouse support
     set mouse=a
-
 endif
 
 " Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn
@@ -139,6 +144,9 @@ autocmd CompleteDone * pclose
 " easy access to Gundo toggle
 nnoremap <leader>ggg :GundoToggle<cr>
 
+" easily run text cleanup script
+nnoremap <leader>cc :source ~/myvim/text_cleanup.vim<cr>
+
 " colorscheme for Airline
 let g:airline_theme="papercolor"
 
@@ -157,6 +165,11 @@ let g:UltiSnipsExpandTrigger="<c-k>"
 let g:UltiSnipsJumpForwardTrigger="<c-n>"
 let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 
+" open the srg demos module in a browser
+function! OpenDemos()
+    silent! exec "silent! !open \"https://g4-us.yougov.net/\\#US_SRG_Demos_Module\""
+endfunction
+nnoremap <F15> :call OpenDemos()<cr>
 
 "" begin R plugin customization
 
@@ -174,10 +187,10 @@ let R_help_w=125
 let R_assign_map="`"
 
 " tmux configurations to split panes vertically with R plugin
-let R_in_buffer=0
-let R_applescript=0
+"let R_in_buffer=0
+"let R_applescript=0
 "let R_tmux_split=1
-let R_source = "/Users/voyager/.vim/plugged/Nvim-R/R/tmux_split.vim"
+"let R_source = "/Users/jason/.vim/plugged/Nvim-R/R/tmux_split.vim"
 
 "" end R
 
@@ -261,7 +274,7 @@ filetype indent on
 set ofu=syntaxcomplete#Complete
 
 " turn off the 'boxy' hydrangea string highlighting
-hi link String Include
+"hi link String Include
 
 " make comments italic
 "highlight Comment cterm=italic
@@ -271,7 +284,7 @@ highlight Comment gui=italic
 nnoremap <leader>tt :TagbarToggle<cr>
 
 " make I go to the beginning of the line, ignoring whitespace
-nnoremap I 0i
+"nnoremap I 0i
 
 " experiment with mappings to move lines up/down
 nnoremap - ddp
@@ -296,7 +309,7 @@ set splitright
 set splitbelow
 
 " turn off swap files
-set noswapfile
+"set noswapfile
 
 " show the number of lines/characters selected in visual mode
 set showcmd
@@ -317,6 +330,12 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+
+" duplicate this for normal-terminal mode
+tnoremap <C-J> <C-W><C-J>
+tnoremap <C-K> <C-W><C-K>
+tnoremap <C-L> <C-W><C-L>
+tnoremap <C-H> <C-W><C-H>
 
 " make regexes more readable (turn on magic to level "very magic")
 cnoremap s/ s/\v
@@ -382,18 +401,21 @@ let showmarks_include = "abcdefghilmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 function! GoogleSearch()
     let searchterm = getreg("z")
         silent! exec "silent! !open \"http://google.com/search?q=" . searchterm . "\""
-    endfunction
+endfunction
 vnoremap <F5> "zy<esc>:call GoogleSearch()<CR>
 
 function! DemoSearch()
     let searchterm = getreg("z")
         silent! exec "silent! !open \"https://datum.yougov.net/namespaces/panel:1/definitions/" . searchterm . "\""
-    endfunction
+endfunction
 vnoremap <F5> "zy<esc>:call DemoSearch()<CR>
 
 " shortcut to set qsl filetype
 " embeds css highlighting inside of qsl highlighting
 function! QSL()
+
+    cd /Users/jason/qsl/
+
     set ft=qsl
     let b:current_syntax = ''
     unlet b:current_syntax
