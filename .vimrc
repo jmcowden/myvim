@@ -16,7 +16,7 @@ call plug#begin('~/.vim/plugged')
 "Plug 'https://github.com/ivanov/vim-ipython.git'
 
 " fzf fuzzy finder
-Plug 'https://github.com/junegunn/fzf.git'
+"Plug 'https://github.com/junegunn/fzf.git'
 
 " fancy up the status bar
 Plug 'https://github.com/vim-airline/vim-airline.git'
@@ -28,6 +28,7 @@ Plug 'https://github.com/edkolev/tmuxline.vim.git'
 
 " snippet plugin
 Plug 'https://github.com/SirVer/ultisnips.git'
+Plug 'https://github.com/ncm2/ncm2-ultisnips.git'
 
 " snippet library
 Plug 'https://github.com/honza/vim-snippets.git'
@@ -38,8 +39,8 @@ Plug 'https://github.com/tpope/vim-surround.git'
 " nice undo tree with diffs
 Plug 'https://github.com/sjl/gundo.vim.git'
 
-" give control-p file manager a whirl
-Plug 'https://github.com/ctrlpvim/ctrlp.vim.git'
+" control-p file manager
+"Plug 'https://github.com/ctrlpvim/ctrlp.vim.git'
 
 " alfredodeza's python linter
 Plug 'https://github.com/alfredodeza/khuno.vim.git'
@@ -48,6 +49,9 @@ Plug 'https://github.com/alfredodeza/khuno.vim.git'
 " key bindings can be found here:
 " https://raw.githubusercontent.com/jalvesaq/Nvim-R/master/doc/Nvim-R.txt
 Plug 'https://github.com/jalvesaq/Nvim-R.git'
+
+" csv viewer
+Plug 'https://github.com/chrisbra/csv.vim.git'
 
 " simulate a split shell inside of vim using tmux
 Plug 'https://github.com/ervandew/screen.git'
@@ -89,7 +93,7 @@ Plug 'https://github.com/wellle/targets.vim.git'
 Plug 'https://github.com/jpalardy/vim-slime.git'
 
 " testing an alternate alignment tool
-Plug 'https://github.com/godlygeek/tabular.git'
+"Plug 'https://github.com/godlygeek/tabular.git'
 
 " preview css color codes
 Plug 'https://github.com/ap/vim-css-color.git'
@@ -164,12 +168,6 @@ nnoremap <c-v> 0v$h
 let g:UltiSnipsExpandTrigger="<c-k>"
 let g:UltiSnipsJumpForwardTrigger="<c-n>"
 let g:UltiSnipsJumpBackwardTrigger="<c-b>"
-
-" open the srg demos module in a browser
-function! OpenDemos()
-    silent! exec "silent! !open \"https://g4-us.yougov.net/\\#US_SRG_Demos_Module\""
-endfunction
-nnoremap <F15> :call OpenDemos()<cr>
 
 "" begin R plugin customization
 
@@ -337,6 +335,10 @@ tnoremap <C-K> <C-W><C-K>
 tnoremap <C-L> <C-W><C-L>
 tnoremap <C-H> <C-W><C-H>
 
+" remap key to enter terminal-normal mode
+tnoremap <esc> <C-\><C-N>
+tnoremap <M-[> <esc>
+
 " make regexes more readable (turn on magic to level "very magic")
 cnoremap s/ s/\v
 
@@ -397,12 +399,34 @@ runtime macros/matchit.vim
 " hide the special marks for showmark plugin
 let showmarks_include = "abcdefghilmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
+" open the srg demos module in a browser
+function! OpenDemos()
+    silent! exec "silent! !open \"https://g4-us.yougov.net/\\#US_SRG_Demos_Module\""
+endfunction
+nnoremap <F15> :call OpenDemos()<cr>
+
+function! Factorial()
+python3 << EOF
+import math
+import vim
+
+# pull in register z
+mynum = vim.eval('getreg("z")')
+# build a command for vim to execute
+output = "setreg('z', " + str(math.factorial(int(mynum))) + ")"
+# execute the command we built to reset the value of z
+vim.eval(output)
+
+EOF
+endfunction
+vnoremap <F6> "zy<esc>:call Factorial()<CR>diwh"zp
+
 " function to google word under cursor in a browser
 function! GoogleSearch()
     let searchterm = getreg("z")
         silent! exec "silent! !open \"http://google.com/search?q=" . searchterm . "\""
 endfunction
-vnoremap <F5> "zy<esc>:call GoogleSearch()<CR>
+vnoremap <F7> "zy<esc>:call GoogleSearch()<CR>
 
 function! DemoSearch()
     let searchterm = getreg("z")

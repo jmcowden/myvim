@@ -31,6 +31,9 @@ ZSH_THEME="mybira"
 # Uncomment the following line to enable command auto-correction.
  ENABLE_CORRECTION="true"
 
+# ignore vim as a correction, because the .vim directory constantly triggers it
+ CORRECT_IGNORE_FILE=".*"
+
 # Uncomment the following line to display red dots whilst waiting for completion.
  COMPLETION_WAITING_DOTS="true"
 
@@ -55,9 +58,6 @@ ZSH_THEME="mybira"
 plugins=(rand-quote)
 
 # User configuration
-
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/texbin"
-# export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -92,7 +92,7 @@ source $ZSH/oh-my-zsh.sh
 
 alias vi=vim
 # this is for tmux and the R-plugin
-alias vim="vim -X --servername VIM"
+#alias vim="vim -X --servername VIM"
 alias ll="ls -alFG"
 alias lll="ls -alFG|less"
 alias top="top -o rsize"
@@ -100,19 +100,11 @@ alias cdj="cd /Volumes/projects/jason/scripts/"
 alias cdr="cd /Volumes/projects/jason/spg_repo/spg/"
 alias cde="cd /Volumes/projects/External Projects/"
 alias sshva="ssh vanalytics.paix.yougov.local"
-alias ipy="ipython qtconsole &"
 alias htop="sudo htop"
-
-alias tmux="tmux -2 -f ~/.tmux.config"
+alias weather="curl wttr.in"
 
 # this option allows vim to use c-q as visual-block mode
 stty -ixon
-
-# source .profile
-alias sp="source ~/.zshrc"
-
-# automatically run python2.6 in 32-bit mode
-alias spy="arch -i386 python2.6"
 
 # use vi commands on the terminal line
 set -o vi
@@ -122,18 +114,8 @@ cd () {
     builtin cd "$*" && ll
 }
 
-# for use with ipython/vim/qtconsole
-# this was breaking the vim R plugin
-#export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
-
-# the bin for ipython is missing after some uninstall/install nonsense
-alias ipython='python -m IPython'
-
 # press v when editing a file in less to open in vim
 export EDITOR=vim
-
-# allow
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/texbin
 
 # the numpad doesn't work in zsh by default, so add the mappings here
 # Keypad
@@ -158,11 +140,6 @@ bindkey -s "^[Ok" "+"
 bindkey -s "^[Om" "-"
 bindkey -s "^[Oj" "*"
 bindkey -s "^[Oo" "/"
-
-# help python 2.6 find the libraries it needs for the spss module
-#export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/Applications/IBM/SPSS/Statistics/19/SPSSStatistics.app/Contents/lib
-
-# stuff for R-vim plugin
 
 # Change the TERM environment variable (to get 256 colors) and make Vim
 # connecting to X Server even if running in a terminal emulator (many of
