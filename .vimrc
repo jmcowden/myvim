@@ -419,7 +419,7 @@ vim.eval(output)
 
 EOF
 endfunction
-vnoremap <F6> "zy<esc>:call Factorial()<CR>diwh"zp
+vnoremap <F6> "zy<esc>:call Factorial()<CR>diw"zP
 
 " function to google word under cursor in a browser
 function! GoogleSearch()
