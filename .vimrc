@@ -101,6 +101,13 @@ Plug 'https://github.com/ap/vim-css-color.git'
 " nicer indentation for python
 Plug 'https://github.com/Vimjas/vim-python-pep8-indent.git'
 
+" autocomplete engine
+Plug 'https://github.com/Shougo/deoplete.nvim'
+
+" needed for deoplete
+Plug 'https://github.com/roxma/vim-hug-neovim-rpc.git'
+Plug 'https://github.com/roxma/nvim-yarp.git'
+
 call plug#end()
 
 " visual prefs
@@ -126,6 +133,9 @@ if !has("gui_running")
 endif
 
 " Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn
+
+" enable deoplete by default
+let g:deoplete#enable_at_startup = 1
 
 " tmuxline configuration
 " disable the default menu separators, which requires powerline
