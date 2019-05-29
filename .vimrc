@@ -76,7 +76,7 @@ Plug 'https://github.com/vim-scripts/ShowMarks.git'
 
 " jump to any location on screen!
 Plug 'https://github.com/easymotion/vim-easymotion.git'
-4
+
 " neat little tool to highlight bits of code as you scroll
 Plug 'https://github.com/junegunn/limelight.vim.git'
 
@@ -114,7 +114,7 @@ call plug#end()
 if has("gui_running")
     " hide toolbar
     set guioptions-=T
-    set guifont=InconsolataLGC:h12
+    set guifont=InconsolataLGC:h13
     colorscheme yellow-moon
     "colorscheme hydrangea
     "colorscheme materialbox
@@ -415,7 +415,6 @@ function! OpenDemos()
 endfunction
 nnoremap <F15> :call OpenDemos()<cr>
 
-" replace a highlighted number with its factorial
 function! Factorial()
 python3 << EOF
 import math
@@ -430,14 +429,14 @@ vim.eval(output)
 
 EOF
 endfunction
-vnoremap <F6> "zy<esc>:call Factorial()<CR>diw"zP
+nnoremap <F6> viw"zy<esc>:call Factorial()<CR>diw"zP
 
 " function to google word under cursor in a browser
 function! GoogleSearch()
     let searchterm = getreg("z")
         silent! exec "silent! !open \"http://google.com/search?q=" . searchterm . "\""
 endfunction
-vnoremap <F7> "zy<esc>:call GoogleSearch()<CR>
+vnoremap <F7> viw"zy<esc>:call GoogleSearch()<CR>
 
 function! DemoSearch()
     let searchterm = getreg("z")
