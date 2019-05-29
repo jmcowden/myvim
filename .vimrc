@@ -76,7 +76,7 @@ Plug 'https://github.com/vim-scripts/ShowMarks.git'
 
 " jump to any location on screen!
 Plug 'https://github.com/easymotion/vim-easymotion.git'
-
+4
 " neat little tool to highlight bits of code as you scroll
 Plug 'https://github.com/junegunn/limelight.vim.git'
 
@@ -114,7 +114,7 @@ call plug#end()
 if has("gui_running")
     " hide toolbar
     set guioptions-=T
-    set guifont=InconsolataLGC:h13
+    set guifont=InconsolataLGC:h12
     colorscheme yellow-moon
     "colorscheme hydrangea
     "colorscheme materialbox
@@ -415,6 +415,7 @@ function! OpenDemos()
 endfunction
 nnoremap <F15> :call OpenDemos()<cr>
 
+" replace a highlighted number with its factorial
 function! Factorial()
 python3 << EOF
 import math
