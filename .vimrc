@@ -114,7 +114,7 @@ call plug#end()
 if has("gui_running")
     " hide toolbar
     set guioptions-=T
-    set guifont=InconsolataLGC:h13
+    set guifont=InconsolataLGC:h11
     colorscheme yellow-moon
     "colorscheme hydrangea
     "colorscheme materialbox
@@ -133,6 +133,11 @@ if !has("gui_running")
 endif
 
 " Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn
+
+" adjust python version for gundo
+if has('python3')
+    let g:gundo_prefer_python3 = 1
+endif
 
 " enable deoplete by default
 let g:deoplete#enable_at_startup = 1
@@ -186,7 +191,7 @@ nnoremap <leader>rcom :vsp ~/myvim/r_plug_commands.txt<cr>
 
 " open help docs in a vertical split instead of a new tab
 let R_nvimpager="vertical"
-let R_rconsole_width = 100
+let R_rconsole_width = 80
 
 " increase the width of the help doc split window
 let R_help_w=125
