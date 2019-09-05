@@ -28,7 +28,7 @@ Plug 'https://github.com/edkolev/tmuxline.vim.git'
 
 " snippet plugin
 Plug 'https://github.com/SirVer/ultisnips.git'
-Plug 'https://github.com/ncm2/ncm2-ultisnips.git'
+"Plug 'https://github.com/ncm2/ncm2-ultisnips.git'
 
 " snippet library
 Plug 'https://github.com/honza/vim-snippets.git'
@@ -114,8 +114,9 @@ call plug#end()
 if has("gui_running")
     " hide toolbar
     set guioptions-=T
-    set guifont=InconsolataLGC:h11
-    colorscheme yellow-moon
+    set guifont=InconsolataLGC:h13
+    colorscheme OceanicNext
+    "colorscheme yellow-moon
     "colorscheme hydrangea
     "colorscheme materialbox
     "colorscheme nightshimmer
@@ -133,6 +134,9 @@ if !has("gui_running")
 endif
 
 " Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn
+
+" remove filename header when sending documents to print
+set printheader=
 
 " adjust python version for gundo
 if has('python3')
@@ -167,7 +171,8 @@ nnoremap <leader>ggg :GundoToggle<cr>
 nnoremap <leader>cc :source ~/myvim/text_cleanup.vim<cr>
 
 " colorscheme for Airline
-let g:airline_theme="papercolor"
+let g:airline_theme="oceanicnext"
+"let g:airline_theme="papercolor"
 
 " turn off the default showmode behavior, since i'm using airline
 set noshowmode
@@ -191,7 +196,7 @@ nnoremap <leader>rcom :vsp ~/myvim/r_plug_commands.txt<cr>
 
 " open help docs in a vertical split instead of a new tab
 let R_nvimpager="vertical"
-let R_rconsole_width = 80
+let R_rconsole_width = 120
 
 " increase the width of the help doc split window
 let R_help_w=125
