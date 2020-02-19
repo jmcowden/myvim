@@ -16,6 +16,13 @@ snippet surveyfull
 	# is the interview "live" or "test"?
 	type = gryphon.interview_type
 
+	# flag if the respondent is panel or external sample
+	is_panelist = panman.is_panelist
+
+	# capture days since joining panel to deal with election-related issues
+	if pdl.days_since_welcome_survey:
+		days_since_welcome_survey_pdl = str(pdl.days_since_welcome_survey)
+
 	# capture geo header to screen non-US
 	geo_country_code = "NA"
 	non_US_screen = 0
@@ -135,8 +142,9 @@ snippet csv
 	temp resultrow = mytable.find_first(query)
 
 	# if the table returns a row, lookup values by column in that row
-	if resultrow['colname2']:
-		var1 = resultrow['colname2']
+	if resultrow:
+		if resultrow['colname2']:
+			var1 = resultrow['colname2']
 
 snippet insert
 	{
@@ -188,3 +196,10 @@ snippet table
 	        <td></td>
 	    </tr>
 	</table>>
+
+snippet thanksout
+	{page thanksout nav_back=0 if screen_flag in [1]}
+	We're sorry, but you do not qualify for this survey. Please press the forward arrow to be taken to a different survey.
+
+	{exit status=screenout}
+	{end page thanksout}
