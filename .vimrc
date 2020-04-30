@@ -12,8 +12,10 @@ call plug#begin('~/.vim/plugged')
     "Plug 'https://github.com/path/to/repo.git'
 " then reload your .vimrc and run :PlugInstall to install
 
-" ipython/vim plugin
-"Plug 'https://github.com/ivanov/vim-ipython.git'
+Plug 'https://github.com/tpope/vim-dispatch.git'
+
+" jupyter
+Plug 'https://github.com/wmvanvliet/jupyter-vim.git'
 
 " fzf fuzzy finder
 "Plug 'https://github.com/junegunn/fzf.git'
@@ -28,7 +30,7 @@ Plug 'https://github.com/edkolev/tmuxline.vim.git'
 
 " snippet plugin
 Plug 'https://github.com/SirVer/ultisnips.git'
-"Plug 'https://github.com/ncm2/ncm2-ultisnips.git'
+Plug 'https://github.com/ncm2/ncm2-ultisnips.git'
 
 " snippet library
 Plug 'https://github.com/honza/vim-snippets.git'
@@ -68,6 +70,7 @@ Plug 'https://github.com/rafi/awesome-vim-colorschemes.git'
 Plug 'https://github.com/fcpg/vim-orbital'
 Plug 'https://github.com/yuttie/hydrangea-vim'
 Plug 'https://github.com/quanganhdo/grb256'
+Plug 'https://github.com/morhetz/gruvbox'
 
 " display marks to the left of line numbers
 "  - you may need to make a 'docs' directory to kill an error message
@@ -114,8 +117,11 @@ call plug#end()
 if has("gui_running")
     " hide toolbar
     set guioptions-=T
-    set guifont=InconsolataLGC:h13
-    colorscheme OceanicNext
+    set guifont=InconsolataLGC:h11
+    "colorscheme OceanicNext
+    set bg=dark
+    colorscheme gruvbox
+    let g:airline_theme="gruvbox"
     "colorscheme yellow-moon
     "colorscheme hydrangea
     "colorscheme materialbox
@@ -124,19 +130,19 @@ if has("gui_running")
     "colorscheme sift
     hi Normal guibg=grey20
     " window transparency
-    set transparency=5
+    set transparency=20
 endif
 
 if !has("gui_running")
-    colorscheme grb256
+    colorscheme ir_black
+    " colorscheme for Airline
+    let g:airline_theme="oceanicnext"
+    "colorscheme grb256
     " mouse support
     set mouse=a
 endif
 
 " Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn
-
-" remove filename header when sending documents to print
-set printheader=
 
 " adjust python version for gundo
 if has('python3')
@@ -170,10 +176,6 @@ nnoremap <leader>ggg :GundoToggle<cr>
 " easily run text cleanup script
 nnoremap <leader>cc :source ~/myvim/text_cleanup.vim<cr>
 
-" colorscheme for Airline
-let g:airline_theme="oceanicnext"
-"let g:airline_theme="papercolor"
-
 " turn off the default showmode behavior, since i'm using airline
 set noshowmode
 
@@ -189,6 +191,7 @@ let g:UltiSnipsExpandTrigger="<c-k>"
 let g:UltiSnipsJumpForwardTrigger="<c-n>"
 let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 
+"nmap <leader>d  <Plug>(SendToTermLine)j
 "" begin R plugin customization
 
 " open file listing all <leader>xx shortcuts for the plugin
@@ -196,7 +199,7 @@ nnoremap <leader>rcom :vsp ~/myvim/r_plug_commands.txt<cr>
 
 " open help docs in a vertical split instead of a new tab
 let R_nvimpager="vertical"
-let R_rconsole_width = 120
+let R_rconsole_width = 80
 
 " increase the width of the help doc split window
 let R_help_w=125
@@ -458,7 +461,7 @@ vnoremap <F5> "zy<esc>:call DemoSearch()<CR>
 " embeds css highlighting inside of qsl highlighting
 function! QSL()
 
-    cd /Users/jason/qsl/
+    cd /Users/voyager/qsl/
 
     set ft=qsl
     let b:current_syntax = ''
