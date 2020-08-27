@@ -14,8 +14,11 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'https://github.com/tpope/vim-dispatch.git'
 
-" jupyter
-Plug 'https://github.com/wmvanvliet/jupyter-vim.git'
+Plug 'vim/killersheep'
+
+" linting engine
+Plug 'https://github.com/dense-analysis/ale.git'
+
 
 " fzf fuzzy finder
 "Plug 'https://github.com/junegunn/fzf.git'
@@ -116,7 +119,7 @@ call plug#end()
 " visual prefs
 if has("gui_running")
     " hide toolbar
-    set guioptions-=T
+    set guioptions -= T
     set guifont=InconsolataLGC:h11
     "colorscheme OceanicNext
     set bg=dark
@@ -146,24 +149,27 @@ endif
 
 " adjust python version for gundo
 if has('python3')
-    let g:gundo_prefer_python3 = 1
+    let g:gundo_prefer_python3=1
 endif
 
 " enable deoplete by default
-let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_at_startup=1
+
+" try to keep deoplete from completing without me asking it to
+set completeopt=menu,noselect
 
 " tmuxline configuration
 " disable the default menu separators, which requires powerline
-let g:tmuxline_powerline_separators = 0
+let g:tmuxline_powerline_separators=0
 " prevent vim-airline from setting the tmux config - I want to do it myself
-let g:airline#extensions#tmuxline#enabled = 0
+let g:airline#extensions#tmuxline#enabled=0
 
 " vim-slime configuration
 " use tmux instead of screen
 let g:slime_target="tmux"
 " some defaults to set the target tmux pane
-let g:slime_dont_ask_default = 1
-let g:slime_default_config = {"socket_name": "default", "target_pane": "0.1"}
+let g:slime_dont_ask_default=1
+let g:slime_default_config={"socket_name": "default", "target_pane": "0.1"}
 " send commands to ipython using %cpaste
 let g:slime_python_ipython=1
 
@@ -199,7 +205,7 @@ nnoremap <leader>rcom :vsp ~/myvim/r_plug_commands.txt<cr>
 
 " open help docs in a vertical split instead of a new tab
 let R_nvimpager="vertical"
-let R_rconsole_width = 80
+let R_rconsole_width=80
 
 " increase the width of the help doc split window
 let R_help_w=125
@@ -208,10 +214,10 @@ let R_help_w=125
 let R_assign_map="`"
 
 " tmux configurations to split panes vertically with R plugin
-"let R_in_buffer=0
+"let R_in_buffer= 0
 "let R_applescript=0
 "let R_tmux_split=1
-"let R_source = "/Users/jason/.vim/plugged/Nvim-R/R/tmux_split.vim"
+"let R_source="/Users/jason/.vim/plugged/Nvim-R/R/tmux_split.vim"
 
 "" end R
 
@@ -222,7 +228,7 @@ nmap <silent><leader>k <esc>:Khuno show<cr>
 nnoremap <leader>ww <c-w><c-w>:q<cr>
 
 " remap for ctrlp - press enter in normal mode to pull up the buffer list
-"nnoremap <CR> :CtrlPBuffer<CR>
+"nnoremap <cr> :CtrlPBuffer<cr>
 
 " turn on relative line numbers
 set relativenumber
@@ -347,20 +353,20 @@ set incsearch
 set vb
 
 " save a keystroke changing panes
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+nnoremap <c-j> <c-w><c-j>
+nnoremap <c-k> <c-w><c-k>
+nnoremap <c-l> <c-w><c-l>
+nnoremap <c-h> <c-w><c-h>
 
 " duplicate this for normal-terminal mode
-tnoremap <C-J> <C-W><C-J>
-tnoremap <C-K> <C-W><C-K>
-tnoremap <C-L> <C-W><C-L>
-tnoremap <C-H> <C-W><C-H>
+tnoremap <c-j> <c-w><c-j>
+tnoremap <c-k> <c-w><c-k>
+tnoremap <c-l> <c-w><c-l>
+tnoremap <c-h> <c-w><c-h>
 
 " remap key to enter terminal-normal mode
-tnoremap <esc> <C-\><C-N>
-tnoremap <M-[> <esc>
+tnoremap <esc> <c-\><c-n>
+tnoremap <m-[> <esc>
 
 " make regexes more readable (turn on magic to level "very magic")
 cnoremap s/ s/\v
@@ -420,7 +426,7 @@ inoremap ()     ()
 runtime macros/matchit.vim
 
 " hide the special marks for showmark plugin
-let showmarks_include = "abcdefghilmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+let showmarks_include="abcdefghilmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 " open the srg demos module in a browser
 function! OpenDemos()
@@ -442,20 +448,20 @@ vim.eval(output)
 
 EOF
 endfunction
-nnoremap <F6> viw"zy<esc>:call Factorial()<CR>diw"zP
+nnoremap <F6> viw"zy<esc>:call Factorial()<cr>diw"zP
 
 " function to google word under cursor in a browser
 function! GoogleSearch()
-    let searchterm = getreg("z")
+    let searchterm=getreg("z")
         silent! exec "silent! !open \"http://google.com/search?q=" . searchterm . "\""
 endfunction
-vnoremap <F7> viw"zy<esc>:call GoogleSearch()<CR>
+vnoremap <F7> viw"zy<esc>:call GoogleSearch()<cr>
 
 function! DemoSearch()
-    let searchterm = getreg("z")
+    let searchterm=getreg("z")
         silent! exec "silent! !open \"https://datum.yougov.net/namespaces/panel:1/definitions/" . searchterm . "\""
 endfunction
-vnoremap <F5> "zy<esc>:call DemoSearch()<CR>
+vnoremap <F5> "zy<esc>:call DemoSearch()<cr>
 
 " shortcut to set qsl filetype
 " embeds css highlighting inside of qsl highlighting
@@ -490,7 +496,7 @@ function! QSL()
     hi link Snip SpecialComment
     let b:current_syntax = 'qsl.vim'
 endfunction
-map <leader>qsl :call QSL()<CR>
+map <leader>qsl :call QSL()<cr>
 
 " turn on cursor row highlighting
 set cursorline
@@ -506,7 +512,7 @@ function! Tab_Or_Complete()
     if col('.') > 1 && strpart(getline('.'), col('.')-2, 3) =~ '^\w'
         return "\<c-n>"
     else
-        return "\<Tab>"
+        return "\<tab>"
     endif
 endfunction
 inoremap <tab> <c-r>=Tab_Or_Complete()<cr>
