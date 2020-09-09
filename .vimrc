@@ -119,7 +119,7 @@ call plug#end()
 " visual prefs
 if has("gui_running")
     " hide toolbar
-    set guioptions -= T
+    set guioptions-=T
     set guifont=InconsolataLGC:h11
     "colorscheme OceanicNext
     set bg=dark
