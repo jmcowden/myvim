@@ -15,7 +15,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'https://github.com/tpope/vim-dispatch.git'
 
 " jupyter
-Plug 'https://github.com/wmvanvliet/jupyter-vim.git'
+"Plug 'https://github.com/wmvanvliet/jupyter-vim.git'
 
 " fzf fuzzy finder
 "Plug 'https://github.com/junegunn/fzf.git'
@@ -117,7 +117,7 @@ call plug#end()
 if has("gui_running")
     " hide toolbar
     set guioptions-=T
-    set guifont=InconsolataLGC:h11
+    set guifont=Inconsolata:h14
     "colorscheme OceanicNext
     set bg=dark
     colorscheme gruvbox
@@ -130,7 +130,7 @@ if has("gui_running")
     "colorscheme sift
     hi Normal guibg=grey20
     " window transparency
-    set transparency=20
+    set transparency=5
 endif
 
 if !has("gui_running")
@@ -168,7 +168,7 @@ let g:slime_default_config = {"socket_name": "default", "target_pane": "0.1"}
 let g:slime_python_ipython=1
 
 " close the preview window containing help-text after autocomplete
-autocmd CompleteDone * pclose
+autocmd CompleteDone * if pumvisible() == 0|silent! pclose|endif
 
 " easy access to Gundo toggle
 nnoremap <leader>ggg :GundoToggle<cr>
@@ -461,7 +461,7 @@ vnoremap <F5> "zy<esc>:call DemoSearch()<CR>
 " embeds css highlighting inside of qsl highlighting
 function! QSL()
 
-    cd /Users/voyager/qsl/
+    cd /Users/jason/qsl/
 
     set ft=qsl
     let b:current_syntax = ''
