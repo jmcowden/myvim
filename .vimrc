@@ -32,7 +32,7 @@ Plug 'https://github.com/vim-airline/vim-airline-themes.git'
 Plug 'https://github.com/edkolev/tmuxline.vim.git'
 
 " snippet plugin
-"Plug 'https://github.com/SirVer/ultisnips.git'
+Plug 'https://github.com/SirVer/ultisnips.git'
 Plug 'https://github.com/ncm2/ncm2-ultisnips.git'
 
 " snippet library
@@ -120,7 +120,7 @@ call plug#end()
 if has("gui_running")
     " hide toolbar
     set guioptions-=T
-    set guifont=InconsolataLGC:h11
+    set guifont=Inconsolata:h14
     "colorscheme OceanicNext
     set bg=dark
     colorscheme gruvbox
@@ -133,7 +133,7 @@ if has("gui_running")
     "colorscheme sift
     hi Normal guibg=grey20
     " window transparency
-    set transparency=20
+    set transparency=5
 endif
 
 if !has("gui_running")
@@ -174,7 +174,8 @@ let g:slime_default_config={"socket_name": "default", "target_pane": "0.1"}
 let g:slime_python_ipython=1
 
 " close the preview window containing help-text after autocomplete
-autocmd CompleteDone * pclose
+"autocmd CompleteDone * pclose
+autocmd CompleteDone * if pumvisible() == 0|silent! pclose|endif
 
 " easy access to Gundo toggle
 nnoremap <leader>ggg :GundoToggle<cr>
@@ -193,9 +194,9 @@ silent !stty -ixon > /dev/null 2>/dev/null
 nnoremap <c-v> 0v$h
 
 " remap the snippet trigger key
-"let g:UltiSnipsExpandTrigger="<c-k>"
-"let g:UltiSnipsJumpForwardTrigger="<c-n>"
-"let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+let g:UltiSnipsExpandTrigger="<c-k>"
+let g:UltiSnipsJumpForwardTrigger="<c-n>"
+let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 
 "nmap <leader>d  <Plug>(SendToTermLine)j
 "" begin R plugin customization
@@ -205,7 +206,7 @@ nnoremap <leader>rcom :vsp ~/myvim/r_plug_commands.txt<cr>
 
 " open help docs in a vertical split instead of a new tab
 let R_nvimpager="vertical"
-let R_rconsole_width=80
+let R_rconsole_width=90
 
 " increase the width of the help doc split window
 let R_help_w=125
@@ -467,7 +468,7 @@ vnoremap <F5> "zy<esc>:call DemoSearch()<cr>
 " embeds css highlighting inside of qsl highlighting
 function! QSL()
 
-    cd /Users/voyager/qsl/
+    cd /Users/jason/qsl/
 
     set ft=qsl
     let b:current_syntax = ''
