@@ -14,6 +14,9 @@ call plug#begin('~/.vim/plugged')
 
 "Plug 'vim/killersheep'
 
+" code completion
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 " linting engine
 Plug 'https://github.com/dense-analysis/ale.git'
 
@@ -48,7 +51,7 @@ Plug 'https://github.com/sjl/gundo.vim.git'
 "Plug 'https://github.com/ctrlpvim/ctrlp.vim.git'
 
 " alfredodeza's python linter
-Plug 'https://github.com/alfredodeza/khuno.vim.git'
+"Plug 'https://github.com/alfredodeza/khuno.vim.git'
 
 " ARRRRRRRRRRRRRRRRR
 " key bindings can be found here:
@@ -70,8 +73,8 @@ Plug 'https://github.com/vim-scripts/ScrollColors.git'
 " add some rad colorschemes
 "Plug 'https://github.com/flazz/vim-colorschemes.git'
 Plug 'https://github.com/rafi/awesome-vim-colorschemes.git'
-Plug 'https://github.com/fcpg/vim-orbital'
-Plug 'https://github.com/yuttie/hydrangea-vim'
+"Plug 'https://github.com/fcpg/vim-orbital'
+"Plug 'https://github.com/yuttie/hydrangea-vim'
 Plug 'https://github.com/quanganhdo/grb256'
 Plug 'https://github.com/morhetz/gruvbox'
 
@@ -84,7 +87,7 @@ Plug 'https://github.com/vim-scripts/ShowMarks.git'
 Plug 'https://github.com/easymotion/vim-easymotion.git'
 
 " neat little tool to highlight bits of code as you scroll
-Plug 'https://github.com/junegunn/limelight.vim.git'
+"Plug 'https://github.com/junegunn/limelight.vim.git'
 
 " higlight columns visually to show indent levels
 Plug 'https://github.com/nathanaelkane/vim-indent-guides'
@@ -105,14 +108,14 @@ Plug 'https://github.com/jpalardy/vim-slime.git'
 Plug 'https://github.com/ap/vim-css-color.git'
 
 " nicer indentation for python
-Plug 'https://github.com/Vimjas/vim-python-pep8-indent.git'
+"Plug 'https://github.com/Vimjas/vim-python-pep8-indent.git'
 
 " autocomplete engine
-Plug 'https://github.com/Shougo/deoplete.nvim'
+"Plug 'https://github.com/Shougo/deoplete.nvim'
 
 " needed for deoplete
-Plug 'https://github.com/roxma/vim-hug-neovim-rpc.git'
-Plug 'https://github.com/roxma/nvim-yarp.git'
+"Plug 'https://github.com/roxma/vim-hug-neovim-rpc.git'
+"Plug 'https://github.com/roxma/nvim-yarp.git'
 
 call plug#end()
 
@@ -121,10 +124,12 @@ if has("gui_running")
     " hide toolbar
     set guioptions-=T
     set guifont=Inconsolata:h14
-    "colorscheme OceanicNext
     set bg=dark
-    colorscheme gruvbox
-    let g:airline_theme="gruvbox"
+    colorscheme hybrid
+    let g:airline_theme="bubblegum"
+    " remove a % in the airline statusbar that overlaps other text
+    let g:airline_symbols.colnr = ' '
+    "colorscheme gruvbox
     "colorscheme yellow-moon
     "colorscheme hydrangea
     "colorscheme materialbox
@@ -147,16 +152,19 @@ endif
 
 " Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn
 
+" coc status info
+set statusline^=%{coc#status()}
+
 " adjust python version for gundo
 if has('python3')
     let g:gundo_prefer_python3=1
 endif
 
 " enable deoplete by default
-let g:deoplete#enable_at_startup=1
+"let g:deoplete#enable_at_startup=1
 
 " try to keep deoplete from completing without me asking it to
-set completeopt=menu,noselect
+"set completeopt=menu,noselect
 
 " tmuxline configuration
 " disable the default menu separators, which requires powerline
@@ -166,11 +174,14 @@ let g:airline#extensions#tmuxline#enabled=0
 
 " vim-slime configuration
 " use tmux instead of screen
-let g:slime_target="tmux"
+"let g:slime_target="tmux"
+" use the built-in terminal
+let g:slime_target = "vimterminal"
 " some defaults to set the target tmux pane
-let g:slime_dont_ask_default=1
-let g:slime_default_config={"socket_name": "default", "target_pane": "0.1"}
+"let g:slime_dont_ask_default=1
+"let g:slime_default_config={"socket_name": "default", "target_pane": "0.1"}
 " send commands to ipython using %cpaste
+"let g:slime_default_config="14 !/bin/zsh [IPython: Users/jason]]"
 let g:slime_python_ipython=1
 
 " close the preview window containing help-text after autocomplete
@@ -223,7 +234,7 @@ let R_assign_map="`"
 "" end R
 
 " toggle the quick-fix window in Khuno linter
-nmap <silent><leader>k <esc>:Khuno show<cr>
+"nmap <silent><leader>k <esc>:Khuno show<cr>
 
 " make it easy to close the *other* split window
 nnoremap <leader>ww <c-w><c-w>:q<cr>
