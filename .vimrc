@@ -14,6 +14,9 @@ call plug#begin('~/.vim/plugged')
 
 "Plug 'vim/killersheep'
 
+" nicer way to autocomplete braces etc
+"Plug 'https://github.com/tmsvg/pear-tree.git'
+
 " code completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -62,10 +65,11 @@ Plug 'https://github.com/jalvesaq/Nvim-R.git'
 Plug 'https://github.com/chrisbra/csv.vim.git'
 
 " simulate a split shell inside of vim using tmux
-Plug 'https://github.com/ervandew/screen.git'
+
+"Plug 'https://github.com/ervandew/screen.git'
 
 " lets you view an outline of classes and functions in a file
-Plug 'https://github.com/majutsushi/tagbar'
+"Plug 'https://github.com/majutsushi/tagbar'
 
 " simple colorscheme browser
 Plug 'https://github.com/vim-scripts/ScrollColors.git'
@@ -99,7 +103,7 @@ Plug 'https://github.com/jlanzarotta/bufexplorer.git'
 Plug 'https://github.com/wellle/targets.vim.git'
 
 " tmux/vim integration tool
-Plug 'https://github.com/jpalardy/vim-slime.git'
+"Plug 'https://github.com/jpalardy/vim-slime.git'
 
 " testing an alternate alignment tool
 "Plug 'https://github.com/godlygeek/tabular.git'
@@ -108,7 +112,10 @@ Plug 'https://github.com/jpalardy/vim-slime.git'
 Plug 'https://github.com/ap/vim-css-color.git'
 
 " nicer indentation for python
-"Plug 'https://github.com/Vimjas/vim-python-pep8-indent.git'
+Plug 'https://github.com/Vimjas/vim-python-pep8-indent.git'
+
+" make tab complete easier
+Plug 'https://github.com/ervandew/supertab.git'
 
 " autocomplete engine
 "Plug 'https://github.com/Shougo/deoplete.nvim'
@@ -127,8 +134,6 @@ if has("gui_running")
     set bg=dark
     colorscheme hybrid
     let g:airline_theme="bubblegum"
-    " remove a % in the airline statusbar that overlaps other text
-    let g:airline_symbols.colnr = ' '
     "colorscheme gruvbox
     "colorscheme yellow-moon
     "colorscheme hydrangea
@@ -151,6 +156,18 @@ if !has("gui_running")
 endif
 
 " Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn
+
+"" remove a % in the airline statusbar that overlaps other text
+" first define this if it doesn't already exist (an issue in terminal)
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+
+" now remove the symbol
+let g:airline_symbols.colnr=' '
+
+" make supertab iterate through completes top to bottom
+let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " coc status info
 set statusline^=%{coc#status()}
@@ -272,8 +289,8 @@ set listchars=tab:▸\ ,extends:❯,precedes:❮,nbsp:␣,eol:→,trail:·
 nnoremap <leader>aa :vsp current_directory<cr>:e .<cr>
 
 " use tab instead of % for paren matching
-nnoremap <tab> %
-vnoremap <tab> %
+"nnoremap <tab> %
+"vnoremap <tab> %
 
 " add a buffer of a few lines above/below the current line when scrolling
 set scrolloff=5
@@ -520,14 +537,14 @@ set cursorline
 "Never type the same word twice and maybe learn a new spellings!
 "Use the Linux dictionary when spelling is in doubt.
 "Window users can copy the file to their machine.
-function! Tab_Or_Complete()
-    if col('.') > 1 && strpart(getline('.'), col('.')-2, 3) =~ '^\w'
-        return "\<c-n>"
-    else
-        return "\<tab>"
-    endif
-endfunction
-inoremap <tab> <c-r>=Tab_Or_Complete()<cr>
+"function! Tab_Or_Complete()
+"    if col('.') > 1 && strpart(getline('.'), col('.')-2, 3) =~ '^\w'
+"        return "\<c-n>"
+"    else
+"        return "\<tab>"
+"    endif
+"endfunction
+"inoremap <tab> <c-r>=Tab_Or_Complete()<cr>
 
 " function to increment selected numbers, mapped to control-i
 function! Incr()
