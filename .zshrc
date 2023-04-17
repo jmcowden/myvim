@@ -136,7 +136,7 @@ bindkey '^r' history-incremental-search-backward
 #zle -N zle-keymap-select
 
 # reduce delay switching modes
-export KEYTIMEOUT=.1
+#export KEYTIMEOUT=.1
 
 # list directory contents when changing directories
 cd () {
@@ -180,7 +180,7 @@ export EDITOR='vim -u NONE'
 export EDITOR='vim -u alternate_profile.vim'
 
 # Make Vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)
-export KEYTIMEOUT=1
+export KEYTIMEOUT=.1
 
 # Updates editor information when the keymap changes.
 function zle-keymap-select() {
