@@ -17,6 +17,13 @@ call plug#begin('~/.vim/plugged')
 " nicer way to autocomplete braces etc
 "Plug 'https://github.com/tmsvg/pear-tree.git'
 
+" test out python-mode
+Plug 'https://github.com/python-mode/python-mode.git'
+
+" more complete python syntax highlighting
+"Plug 'https://github.com/vim-python/python-syntax.git'
+"Plug 'https://github.com/sheerun/vim-polyglot.git'
+
 " code completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -103,7 +110,7 @@ Plug 'https://github.com/jlanzarotta/bufexplorer.git'
 Plug 'https://github.com/wellle/targets.vim.git'
 
 " tmux/vim integration tool
-"Plug 'https://github.com/jpalardy/vim-slime.git'
+Plug 'https://github.com/jpalardy/vim-slime.git'
 
 " testing an alternate alignment tool
 "Plug 'https://github.com/godlygeek/tabular.git'
@@ -157,6 +164,29 @@ endif
 
 " Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn
 
+" ALE setup
+let g:ale_fixers = {
+    \   'python': [
+    \       'black',
+    \   ],
+    \}
+
+let g:ale_linters = {
+    \'python': [
+    \     'pylint',
+    \     'flake8',
+    \],
+    \}
+
+let g:ale_virtualtext_cursor = 'disabled'
+let g:airline#extensions#ale#enabled = 1
+
+" related to python syntax highlighting
+let g:python_highlight_all = 1
+
+" turn off the end-of-column highlighting in pythonmode
+"let g:pymode_options_colorcolumn = 0
+
 "" remove a % in the airline statusbar that overlaps other text
 " first define this if it doesn't already exist (an issue in terminal)
 if !exists('g:airline_symbols')
@@ -171,6 +201,9 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " coc status info
 set statusline^=%{coc#status()}
+
+" show syntax/other python errors easily
+nnoremap <leader>e :CocList diagnostics<cr>
 
 " adjust python version for gundo
 if has('python3')
@@ -234,7 +267,8 @@ nnoremap <leader>rcom :vsp ~/myvim/r_plug_commands.txt<cr>
 
 " open help docs in a vertical split instead of a new tab
 let R_nvimpager="vertical"
-let R_rconsole_width=90
+"let R_rconsole_width=80
+let R_rconsole_width=120
 
 " increase the width of the help doc split window
 let R_help_w=125
@@ -556,3 +590,22 @@ function! Incr()
     normal `<
 endfunction
 vnoremap <c-i> :call Incr()<cr>
+
+" change the color of the 80th column highlight - doing this last because
+" otherwise it's not executed (for some reason)
+hi ColorColumn ctermbg=8
+
+" make this toggle
+nnoremap <leader>ch :call ColorColumnToggle()<cr>
+
+let g:colorcolumn_is_on = 1
+
+function! ColorColumnToggle()
+    if g:colorcolumn_is_on
+        set cc=
+        let g:colorcolumn_is_on = 0
+    else
+        set cc=80
+        let g:colorcolumn_is_on = 1
+    endif
+endfunction
