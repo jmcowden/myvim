@@ -24,8 +24,15 @@ Plug 'https://github.com/python-mode/python-mode.git'
 "Plug 'https://github.com/vim-python/python-syntax.git'
 "Plug 'https://github.com/sheerun/vim-polyglot.git'
 
+" sql tools
+Plug 'https://github.com/tpope/vim-dadbod.git'
+Plug 'https://github.com/kristijanhusak/vim-dadbod-ui.git'
+Plug 'https://github.com/kristijanhusak/vim-dadbod-completion.git'
+Plug 'https://github.com/vim-scripts/dbext.vim.git'
+
 " code completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'https://github.com/fannheyward/coc-sql.git'
 
 " linting engine
 Plug 'https://github.com/dense-analysis/ale.git'
@@ -348,6 +355,7 @@ set wildmenu
 " textwidth
 set textwidth=0
 autocmd FileType,BufNewFile,BufRead *.py :setlocal textwidth=79
+autocmd FileType,BufNewFile,BufRead *.py :setlocal formatoptions+=t
 
 " this is incomplete!
 "autocmd FileType,BufNewFile,BufRead *.py :inoremap <tab>
