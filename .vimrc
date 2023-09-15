@@ -37,6 +37,9 @@ Plug 'https://github.com/fannheyward/coc-sql.git'
 " linting engine
 Plug 'https://github.com/dense-analysis/ale.git'
 
+" python code autoformatter
+Plug 'psf/black', { 'branch': 'stable' }
+
 " save workspaces
 Plug 'https://github.com/mhinz/vim-startify'
 
@@ -52,8 +55,8 @@ Plug 'https://github.com/vim-airline/vim-airline-themes.git'
 Plug 'https://github.com/edkolev/tmuxline.vim.git'
 
 " snippet plugin
-Plug 'https://github.com/SirVer/ultisnips.git'
-Plug 'https://github.com/ncm2/ncm2-ultisnips.git'
+"Plug 'https://github.com/SirVer/ultisnips.git'
+"Plug 'https://github.com/ncm2/ncm2-ultisnips.git'
 
 " snippet library
 Plug 'https://github.com/honza/vim-snippets.git'
@@ -129,7 +132,7 @@ Plug 'https://github.com/ap/vim-css-color.git'
 Plug 'https://github.com/Vimjas/vim-python-pep8-indent.git'
 
 " make tab complete easier
-Plug 'https://github.com/ervandew/supertab.git'
+"Plug 'https://github.com/ervandew/supertab.git'
 
 " autocomplete engine
 "Plug 'https://github.com/Shougo/deoplete.nvim'
@@ -161,10 +164,10 @@ if has("gui_running")
 endif
 
 if !has("gui_running")
-    colorscheme ir_black
+    "colorscheme ir_black
     " colorscheme for Airline
     let g:airline_theme="oceanicnext"
-    "colorscheme grb256
+    colorscheme grb256
     " mouse support
     set mouse=a
 endif
@@ -172,11 +175,8 @@ endif
 " Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn
 
 " ALE setup
-let g:ale_fixers = {
-    \   'python': [
-    \       'black',
-    \   ],
-    \}
+let g:ale_fixers = {}
+let g:ale_fixers.python = ['black']
 
 let g:ale_linters = {
     \'python': [
@@ -197,20 +197,20 @@ let g:python_highlight_all = 1
 "" remove a % in the airline statusbar that overlaps other text
 " first define this if it doesn't already exist (an issue in terminal)
 if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
+    let g:airline_symbols = {}
 endif
 
 " now remove the symbol
 let g:airline_symbols.colnr=' '
 
 " make supertab iterate through completes top to bottom
-let g:SuperTabDefaultCompletionType = "<c-n>"
+"let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " coc status info
 set statusline^=%{coc#status()}
 
-" show syntax/other python errors easily
-nnoremap <leader>e :CocList diagnostics<cr>
+" load up the config file for coc
+source $HOME/myvim/coc_config.vim
 
 " adjust python version for gundo
 if has('python3')
@@ -262,9 +262,9 @@ silent !stty -ixon > /dev/null 2>/dev/null
 nnoremap <c-v> 0v$h
 
 " remap the snippet trigger key
-let g:UltiSnipsExpandTrigger="<c-k>"
-let g:UltiSnipsJumpForwardTrigger="<c-n>"
-let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+"let g:UltiSnipsExpandTrigger="<c-k>"
+"let g:UltiSnipsJumpForwardTrigger="<c-n>"
+"let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 
 "nmap <leader>d  <Plug>(SendToTermLine)j
 "" begin R plugin customization
@@ -296,6 +296,10 @@ let R_assign_map="`"
 
 " make it easy to close the *other* split window
 nnoremap <leader>ww <c-w><c-w>:q<cr>
+
+" decrease/increase height of current window by 20
+nnoremap <leader>wii 20<c-w>-
+nnoremap <leader>wim 20<c-w>+
 
 " remap for ctrlp - press enter in normal mode to pull up the buffer list
 "nnoremap <cr> :CtrlPBuffer<cr>
@@ -464,7 +468,7 @@ nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
 " make it easy to add a space after braces in insert mode
-inoremap <c-space> <esc>la
+inoremap <c-o> <esc>la
 
 " insert a newline and don't stay in insert mode
 nnoremap <c-o> O<esc>
@@ -492,6 +496,8 @@ inoremap (      ()<left>
 inoremap (<cr>  (<cr>)<esc>O
 inoremap ((     (
 inoremap ()     ()
+inoremap "      ""<left>
+inoremap ""     "
 
 " turn on the matchit plugin to use % to jump between html and other tags
 runtime macros/matchit.vim
