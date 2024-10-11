@@ -38,7 +38,7 @@ Plug 'https://github.com/fannheyward/coc-sql.git'
 Plug 'https://github.com/dense-analysis/ale.git'
 
 " python code autoformatter
-Plug 'psf/black', { 'branch': 'stable' }
+"Plug 'psf/black', { 'branch': 'stable' }
 
 " save workspaces
 Plug 'https://github.com/mhinz/vim-startify'
@@ -149,8 +149,9 @@ if has("gui_running")
     set guioptions-=T
     set guifont=Inconsolata:h14
     set bg=dark
-    colorscheme hybrid
-    let g:airline_theme="bubblegum"
+    colorscheme OceanicNext
+    "colorscheme mountaineer
+    let g:airline_theme="molokai"
     "colorscheme gruvbox
     "colorscheme yellow-moon
     "colorscheme hydrangea
@@ -176,11 +177,11 @@ endif
 
 " ALE setup
 let g:ale_fixers = {}
-let g:ale_fixers.python = ['black']
+"let g:ale_fixers.python = ['black']
 
+    "\     'pylint',
 let g:ale_linters = {
     \'python': [
-    \     'pylint',
     \     'flake8',
     \],
     \}
@@ -188,11 +189,28 @@ let g:ale_linters = {
 let g:ale_virtualtext_cursor = 'disabled'
 let g:airline#extensions#ale#enabled = 1
 
-" related to python syntax highlighting
-let g:python_highlight_all = 1
+" ale venv support
+let g:ale_python_auto_pipenv = 1
+let g:ale_python_pylint_change_directory=0
+let g:ale_python_flake8_change_directory=0
 
 " turn off the end-of-column highlighting in pythonmode
 "let g:pymode_options_colorcolumn = 0
+"
+" ====  ============================
+" Key   Command
+" ====  ============================
+" [[    Jump to previous class or function (normal, visual, operator modes)
+" ]]    Jump to next class or function  (normal, visual, operator modes)
+" [M    Jump to previous class or method (normal, visual, operator modes)
+" ]M    Jump to next class or method (normal, visual, operator modes)
+" aC    Select a class. Ex: vaC, daC, yaC, caC (operator modes)
+" iC    Select inner class. Ex: viC, diC, yiC, ciC (operator modes)
+" aM    Select a function or method. Ex: vaM, daM, yaM, caM (operator modes)
+" iM    Select inner function or method. Ex: viM, diM, yiM, ciM (operator modes)
+" V     Select logical line. Ex: dV, yV, cV (operator modes), also works with count
+" ====  ============================
+
 
 "" remove a % in the airline statusbar that overlaps other text
 " first define this if it doesn't already exist (an issue in terminal)
@@ -212,10 +230,17 @@ set statusline^=%{coc#status()}
 " load up the config file for coc
 source $HOME/myvim/coc_config.vim
 
+" toggle hints in python code (can be very noisy)
+" related to coc and Pyright
+nnoremap <leader>hh :CocCommand document.toggleInlayHint<cr>
+
 " adjust python version for gundo
 if has('python3')
     let g:gundo_prefer_python3=1
 endif
+
+" make it easy to vsplit into a term and open ipython
+nnoremap <leader>bb :vsp<cr>:term<cr><esc><c-w><c-k>:q<cr>iap<cr>ipython3<cr><esc><c-w><c-h>
 
 " enable deoplete by default
 "let g:deoplete#enable_at_startup=1
